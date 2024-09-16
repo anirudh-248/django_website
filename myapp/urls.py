@@ -9,5 +9,6 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('post/<str:pk>', views.post, name='post'),
     path('service-details', views.service_details, name='service-details'),
-    path('portfolio-details', views.portfolio_details, name='portfolio-details')
+    path('portfolio-details', views.portfolio_details, name='portfolio-details'),
+    path('user-form', views.user_form, name='user-form')
 ]

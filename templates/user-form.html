@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>User Form</h1>
+    <form action="" method="POST">
+        {% if messages %}
+            {% for msg in messages %}
+            <p style="color: red;">{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+        {% csrf_token %}
+        <p>Enter the date of your wedding</p>
+        <input type="date" name="wed_date" id="wed_date">
+        <p>Enter the wedding location (city)</p>
+        <input type="text" name="city" id="city">
+        <p>Choose the services required</p>
+        <input type="checkbox" name="services" value="Catering" id="service1">
+        <label for="service1">Catering</label>
+        <input type="checkbox" name="services" value="Photography" id="service2">
+        <label for="service2">Photography</label>
+        <input type="checkbox" name="services" value="Venue Booking" id="service3">
+        <label for="service3">Venue Booking</label>
+        <p>Do you require an event manager?</p>
+        <input type="radio" name="event_mgr" value="Yes" id="event_mgr_yes">
+        <label for="event_mgr_yes">Yes</label>
+        <input type="radio" name="event_mgr" value="No" id="event_mgr_no">
+        <label for="event_mgr_no">No</label>
+        <p>Enter your budget (Rs.)</p>
+        <input type="text" name="budget" id="budget" required>
+        <br><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <p>To back to main page, <a href="/">click here</a></p>
+</body>
+</html>

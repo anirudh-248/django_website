@@ -25,3 +25,14 @@ class Review(models.Model):
     reviewer_name = models.CharField(max_length=100)
     reviewer_designation = models.CharField(max_length=100)
     reviewer_image = models.ImageField(default='fallback.png', blank=True)
+
+class Faq(models.Model):
+    question = models.CharField(max_length=100)
+    answer = models.CharField(max_length=200)
+
+class UserForm(models.Model):
+    wed_date = models.DateField()
+    city = models.CharField(max_length=100)
+    services = models.CharField(max_length=500)
+    event_mgr = models.CharField(max_length=10)
+    budget = models.DecimalField(max_digits=10, decimal_places=2)

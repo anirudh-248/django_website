@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Feature, Service, Portfolio, Team, Review
+from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from datetime import date
 
 # Create your views here.
 def index(request):
@@ -11,12 +12,14 @@ def index(request):
     portfolios = Portfolio.objects.all()
     team = Team.objects.all()
     reviews = Review.objects.all()
+    faqs = Faq.objects.all()
     return render(request, 'index.html', {
         'features': features,
         'services': services,
         'portfolios': portfolios,
         'team': team,
         'reviews': reviews,
+        'faqs': faqs,
         })
 
 def counter(request):
@@ -72,3 +75,20 @@ def service_details(request):
 
 def portfolio_details(request):
     return render(request, 'portfolio-details.html')
+
+def user_form(request):
+    if request.method=='POST':
+        wed_date = request.POST['wed_date']
+        city = request.POST['city']
+        services = request.POST.getlist('services')
+        event_mgr = request.POST['event_mgr']
+        budget = request.POST['budget']
+        uf = UserForm.objects.create(
+            wed_date=wed_date,
+            city=city,
+            services=', '.join(services),
+            event_mgr=event_mgr,
+            budget=budget
+            )
+        messages.success(request, 'Data has been submitted')
+    return render(request, 'user-form.html')
