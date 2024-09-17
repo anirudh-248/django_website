@@ -36,6 +36,61 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .contact .info-item button {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact .info-item button:hover {
+      background-color: #0056b3;
+    }
+
+    .contact .info-item button {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .services .read-more {
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 1px;
+      padding: 10px 28px;
+      border-radius: 5px;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 60px;
+    }
+
+    .services .read-more i {
+      font-size: 18px;
+      margin-left: 5px;
+      line-height: 0;
+      transition: 0.3s;
+    }
+
+    .services .read-more:hover {
+      background: color-mix(in srgb, var(--accent-color), transparent 40%);
+    }
+
+    .services .read-more:hover i {
+      transform: translate(5px, 0);
+    }
+
+    .services .explore-more {
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -96,7 +151,11 @@
         <div class="row justify-content-center" data-aos="zoom-out">
           <div class="col-xl-7 col-lg-9 text-center">
             {% if user.is_authenticated %}
-            <h1>Welcome to WedEase, {{user.username}}</h1>
+              {% if user.username == 'admin' %}
+              <h1>Welcome to WedEase, {{user.username}}</h1>
+              {% else %}
+              <h1>Welcome to WedEase, {{user.first_name}}</h1>
+              {% endif %}
             {% else %}
             <h1>Your One-Stop Wedding Planning Destination</h1>
             {% endif %}
@@ -106,7 +165,13 @@
         
         <div class="text-center" data-aos="zoom-out" data-aos-delay="100">
           {% if user.is_authenticated %}
-          <a href="user-form" class="btn-get-started">Get Started</a>
+            {% if user.userprofile.user_type == 'customer' %}
+            <a href="user-form" class="btn-get-started">Get Started</a>
+            {% elif user.userprofile.user_type == 'service-provider' %}
+            <a href="sp-form" class="btn-get-started">Get Started</a>
+            {% else %}
+            <a href="/" class="btn-get-started">Get Started</a>
+            {% endif %}
           {% else %}
           <a href="login" class="btn-get-started">Get Started</a>
           {% endif %}
@@ -143,7 +208,7 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            <a href="aboutus" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
           </div>
 
         </div>
@@ -241,7 +306,6 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item item-cyan position-relative">
               <img src="{{service.banner.url}}" alt="{{service.name}}">
-              <a href="service-details" class="stretched-link">
                 <h3>{{service.name}}</h3>
               </a>
               <p>{{service.details}}</p>
@@ -249,7 +313,9 @@
           </div><!-- End Service Item -->
           {% endfor %}
         </div>
-
+        <div class="explore-more" data-aos="fade-up" data-aos-delay="200">
+          <a href="service-details" class="read-more"><span>Explore More</span><i class="bi bi-arrow-right"></i></a>
+        </div>
       </div>
 
     </section><!-- /Services Section -->
@@ -554,71 +620,44 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7778.222542493343!2d77.5176278!3d12.900566!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3fa7243af9c3%3A0x9bed6669a38d1c3!2sRNS%20INSTITUTE%20OF%20TECHNOLOGY!5e0!3m2!1sen!2sin!4v1726553190142!5m2!1sen!2sin" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div><!-- End Google Maps -->
 
-        <div class="row gy-4">
-
-          <div class="col-lg-4">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h3>Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between align-items-center flex-wrap" data-aos="fade-up" data-aos-delay="300">
+              
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd, Channasandra, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098</p>
+                </div>
+              </div><!-- End Info Item -->
+        
+              <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>+91 10101 01010</p>
+                </div>
+              </div><!-- End Info Item -->
+        
+              <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>wedease@gmail.com</p>
+                </div>
+              </div><!-- End Info Item -->
+        
+              <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">
+                <a href="contact"><button type="submit">Send a message</button></a>
               </div>
-            </div><!-- End Info Item -->
-
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-telephone flex-shrink-0"></i>
-              <div>
-                <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h3>Email Us</h3>
-                <p>info@example.com</p>
-              </div>
-            </div><!-- End Info Item -->
-
+        
+            </div>
           </div>
-
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
-        </div>
+        </div>        
 
       </div>
 
@@ -631,10 +670,10 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">OnePage</span>
+          <a href="/" class="logo d-flex align-items-center">
+            <span class="sitename">WedEase</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Planning a wedding can be a whirlwind of excitement and stress. At WedEase, we're here to make the process seamless and enjoyable. Our platform connects you with a vast network of top-notch vendors, offering everything from stunning venues to exquisite catering.</p>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
@@ -646,9 +685,9 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About us</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#">Terms of service</a></li>
             <li><a href="#">Privacy policy</a></li>
           </ul>
@@ -657,34 +696,23 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="service-details/#">Web Design</a></li>
+            <li><a href="service-details/#">Web Development</a></li>
+            <li><a href="service-details/#">Product Management</a></li>
+            <li><a href="service-details/#">Marketing</a></li>
+            <li><a href="service-details/#">Graphic Design</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
-          <p>A108 Adam Street</p>
-          <p>New York, NY 535022</p>
-          <p>United States</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
+          <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd,</p>
+          <p>Channasandra, Rajarajeshwari Nagar,</p>
+          <p>Bengaluru, Karnataka - 560098</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+91 10101 01010</span></p>
+          <p><strong>Email:</strong> <span>wedease@gmail.com</span></p>
         </div>
 
-      </div>
-    </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">OnePage</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
 

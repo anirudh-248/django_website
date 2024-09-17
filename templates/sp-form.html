@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider Form</title>
+</head>
+<body>
+    <h1>Service Provider Form</h1>
+    {% for msg in messages %}
+    <p style="color: red;">{{msg}}</p>
+    {% endfor %}
+    <form action="sp-form", method="POST">
+        {% csrf_token %}
+        <p>Enter company name</p>
+        <input type="text" name="name" id="name">
+        <p>Enter the type of service</p>
+        <input type="text" name="stype" id="stype">
+        <p>Enter description of your service</p>
+        <input type="text" name="desc" id="desc">
+        <p>Enter the cost of your service</p>
+        <input type="text" name="cost" id="cost">
+        <br><br>
+        <input type="submit" value="Submit">
+        <br>
+        <p>To go back to main page, <a href="/">click here</a></p>
+    </form>
+</body>
+</html>

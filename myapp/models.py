@@ -1,6 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, verbose_name=("user"), on_delete=models.CASCADE)
+    user_type = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+
 class Feature(models.Model):
     name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
@@ -36,3 +42,15 @@ class UserForm(models.Model):
     services = models.CharField(max_length=500)
     event_mgr = models.CharField(max_length=10)
     budget = models.DecimalField(max_digits=10, decimal_places=2)
+
+class SpForm(models.Model):
+    name = models.CharField(max_length=100)
+    stype = models.CharField(max_length=100)
+    desc = models.CharField(max_length=500)
+    cost = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    subject = models.CharField(max_length=100)
+    message = models.CharField(max_length=500)

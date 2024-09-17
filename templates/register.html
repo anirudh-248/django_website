@@ -13,22 +13,33 @@
 <body>
     <h1>Sign Up</h1>
     {% for msg in messages %}
-    <h5>{{msg}}</h5>
+    <h4 style="color: red;">{{msg}}</h4>
     {% endfor %}
-    <form action="register", method="POST">
+    <form action="register" method="POST">
         {% csrf_token %}
+        <p>First name:</p>
+        <input type="text" name="fname" id="fname">
+        <p>Last name:</p>
+        <input type="text" name="lname" id="lname">
         <p>Username:</p>
         <input type="text" name="username" id="username">
         <p>Email:</p>
         <input type="email" name="email" id="email">
-        <p>Password:</p>
+        <p>Phone Number:</p>
+        <input type="text" name="phno" id="phno">
+        <p>Type of User:</p>
+        <select name="utype" id="utype">
+            <option value="customer">Customer</option>
+            <option value="service-provider">Service Provider</option>
+        </select>
+        <p>Enter Password:</p>
         <input type="password" name="password" id="password">
         <p>Repeat Password:</p>
         <input type="password" name="password_r" id="password_r">
         <br><br>
         <input type="submit" name="submit" id="submit">
         <br><br>
-        <p>If you have already created an account, <a href="login">Login</a></p>
+        <p>To login, <a href="login">click here</a></p>
     </form>
 </body>
 </html>

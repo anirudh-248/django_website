@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>WedEase</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+  
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+    <!-- Main CSS File -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    
+          <a href="/" class="logo d-flex align-items-center me-auto">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1 class="sitename">WedEase</h1>
+          </a>
+    
+          <nav id="navmenu" class="navmenu">
+            <ul>
+              <li><a href="/">Home<br></a></li>
+              <li><a href="aboutus" class="active">About</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/#portfolio">Portfolio</a></li>
+              <li><a href="/#team">Team</a></li>
+              <li><a href="/#contact">Contact</a></li>
+              <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Dropdown 1</a></li>
+                  <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                      <li><a href="#">Deep Dropdown 1</a></li>
+                      <li><a href="#">Deep Dropdown 2</a></li>
+                      <li><a href="#">Deep Dropdown 3</a></li>
+                      <li><a href="#">Deep Dropdown 4</a></li>
+                      <li><a href="#">Deep Dropdown 5</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Dropdown 2</a></li>
+                  <li><a href="#">Dropdown 3</a></li>
+                  <li><a href="#">Dropdown 4</a></li>
+                </ul>
+              </li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+          {% if user.is_authenticated %}
+          <a class="btn-getstarted" href="logout">Logout</a>
+          {% else %}
+          <a class="btn-getstarted" href="login">Login</a>
+          {% endif %}
+        </div>
+      </header>
+    <h1 style="text-align: center; padding: 10px; margin-top: 20px;">About Us</h1>
+    <p style="width: 75%; margin: 0 auto; text-align: justify;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra ex odio, id scelerisque sem feugiat ac. Curabitur sed venenatis nunc. Sed odio ipsum, accumsan aliquam sem vel, fringilla bibendum erat. Nam pellentesque neque vel lorem interdum dignissim. Duis mi erat, egestas non metus eget, rhoncus laoreet arcu. Donec in hendrerit ante. Maecenas venenatis justo ut efficitur semper. Pellentesque feugiat venenatis feugiat. Vivamus in dui posuere turpis iaculis mattis non a sapien. Proin euismod consequat ex, et rhoncus ex fermentum ut. Suspendisse potenti. Phasellus eget vehicula lorem. Quisque auctor, elit nec elementum ultricies, nisl erat tincidunt dolor, vel ultricies velit nulla eu lectus. Pellentesque accumsan id nulla nec posuere. Curabitur ullamcorper libero id placerat malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        <br><br>
+        Curabitur odio urna, venenatis ac libero vel, suscipit feugiat lacus. Etiam facilisis blandit mi accumsan tristique. Vestibulum venenatis lacinia dolor ac fermentum. Vivamus et elit id nulla efficitur dignissim. Nulla congue at sapien at blandit. Quisque nec iaculis nunc, sed consequat leo. Vestibulum nisl lacus, lacinia in suscipit non, condimentum id nunc. Donec eget risus vitae felis convallis fringilla. Praesent suscipit fringilla metus laoreet efficitur. Integer gravida leo odio, nec ullamcorper ante blandit eget. Quisque id tellus sit amet enim facilisis pellentesque ac non dolor. In a odio eget leo cursus tincidunt. Donec dignissim porttitor elit sed euismod. Cras lacinia, ante vitae porttitor dapibus, ante libero dignissim urna, quis fringilla neque nisi vel sapien. Duis vel justo sit amet velit vestibulum vestibulum. Aenean vitae risus magna.
+        <br><br>
+        Sed sagittis purus sit amet elit volutpat consectetur. Nunc porta condimentum dolor a consectetur. Etiam sodales, velit nec auctor semper, enim nunc ultricies enim, ac scelerisque arcu elit ac risus. Quisque ipsum nisl, sodales et vulputate vel, euismod elementum metus. Proin interdum ante vel lorem blandit, quis semper felis tempus. Nulla facilisi. Phasellus leo enim, dapibus non molestie at, fermentum id nisl. Aliquam viverra lorem nibh, ut porttitor justo hendrerit in. Praesent elementum, eros ut scelerisque pellentesque, velit erat efficitur turpis, quis facilisis dui arcu in diam. Aliquam vel nulla in ex ultricies bibendum sit amet sed purus. Ut elementum convallis neque, nec vulputate mi malesuada eu. Vivamus at lorem nulla. Morbi luctus euismod eros eleifend blandit. Vivamus elementum leo sed augue ultricies tempus.
+    </p>
+</body>
+</html>

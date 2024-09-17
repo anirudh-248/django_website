@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm
+from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from datetime import date
 
 # Create your views here.
 def index(request):
@@ -20,7 +19,7 @@ def index(request):
         'team': team,
         'reviews': reviews,
         'faqs': faqs,
-        })
+    })
 
 def counter(request):
     posts = [1,2,3,4,5,'tim','tom']
@@ -28,8 +27,12 @@ def counter(request):
 
 def register(request):
     if request.method=='POST':
+        fname = request.POST['fname']
+        lname = request.POST['lname']
         username = request.POST['username']
         email = request.POST['email']
+        phno = request.POST['phno']
+        utype = request.POST['utype']
         password = request.POST['password']
         password_r = request.POST['password_r']
         if password==password_r:
@@ -40,8 +43,19 @@ def register(request):
                 messages.info(request, 'Username already taken.')
                 return redirect('register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
+                user = User.objects.create_user(
+                    first_name=fname,
+                    last_name=lname,
+                    username=username,
+                    email=email,
+                    password=password
+                )
+                UserProfile.objects.create(
+                    user=user,
+                    phone_number=phno,
+                    user_type=utype
+                )
+                messages.success(request, 'Account created successfully')
                 return redirect('login')
         else:
             messages.info(request, 'Passwords do not match.')
@@ -92,3 +106,31 @@ def user_form(request):
             )
         messages.success(request, 'Data has been submitted')
     return render(request, 'user-form.html')
+
+def sp_form(request):
+    if request.method=='POST':
+        cname = request.POST['name']
+        stype = request.POST['stype']
+        desc = request.POST['desc']
+        cost = request.POST['cost']
+        sf = SpForm.objects.create(name=cname, stype=stype, desc=desc, cost=cost)
+        messages.success(request, 'Data has been submitted')
+    return render(request, 'sp-form.html')
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+        co = Contact.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+        messages.success(request, 'Data has been submitted')
+    return render(request, 'contact.html')
+
+def aboutus(request):
+    return render(request, 'aboutus.html')
