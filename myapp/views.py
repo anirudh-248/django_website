@@ -84,9 +84,9 @@ def logout(request):
 def post(request, pk):
     return render(request, 'post.html', {'pk':pk})
 
-def service_details(request):
+def services(request):
     services = Service.objects.all()
-    return render(request, 'service-details.html', {'services': services})
+    return render(request, 'services.html', {'services': services})
 
 def portfolio_details(request):
     footer_services = Service.objects.all()[:5]
