@@ -89,7 +89,8 @@ def service_details(request):
     return render(request, 'service-details.html', {'services': services})
 
 def portfolio_details(request):
-    return render(request, 'portfolio-details.html')
+    footer_services = Service.objects.all()[:5]
+    return render(request, 'portfolio-details.html', {'footer_services': footer_services})
 
 def user_form(request):
     if request.method=='POST':
@@ -134,4 +135,5 @@ def contact(request):
     return render(request, 'contact.html')
 
 def aboutus(request):
-    return render(request, 'aboutus.html')
+    services = Service.objects.all()
+    return render(request, 'aboutus.html', {'services': services})

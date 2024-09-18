@@ -689,8 +689,8 @@
           <h4>Useful Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="/aboutus">About us</a></li>
+            <li><a href="/service-details">Services</a></li>
             <li><a href="#">Terms of service</a></li>
             <li><a href="#">Privacy policy</a></li>
           </ul>
@@ -699,11 +699,9 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="service-details/#">Web Design</a></li>
-            <li><a href="service-details/#">Web Development</a></li>
-            <li><a href="service-details/#">Product Management</a></li>
-            <li><a href="service-details/#">Marketing</a></li>
-            <li><a href="service-details/#">Graphic Design</a></li>
+            {% for service in services %}
+            <li><a href="/service-detail/{{service.name}}">{{service.name}}</a></li>
+            {% endfor %}
           </ul>
         </div>
 
