@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Service Details - OnePage Bootstrap Template</title>
+  <title>Service Details</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -84,11 +84,11 @@
     <!-- Page Title -->
     <div class="page-title accent-background">
       <div class="container">
-        <h1>Service Details</h1>
+        <h1>Services</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="/">Home</a></li>
-            <li class="current">Service Details</li>
+            <li class="current">Services</li>
           </ol>
         </nav>
       </div>
@@ -104,7 +104,7 @@
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="services-list">
               {% for service in services %}
-              <a href="/services/{{service.name}}">{{service.name}}</a>
+              <a href="/services/{{service.service_name}}">{{service.service_name}}</a>
               {% endfor %}
             </div>
 
@@ -171,7 +171,7 @@
           <h4>Our Services</h4>
           <ul>
             {% for service in services %}
-            <li><a href="/services/{{service.name}}">{{service.name}}</a></li>
+            <li><a href="/services/{{service.service_name}}">{{service.service_name}}</a></li>
             {% endfor %}
           </ul>
         </div>

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Portfolio Details - OnePage Bootstrap Template</title>
+  <title>Portfolio Details</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -232,7 +232,7 @@
           <h4>Our Services</h4>
           <ul>
             {% for service in footer_services %}
-            <li><a href="/services/{{service.name}}">{{service.name}}</a></li>
+            <li><a href="/services/{{service.service_name}}">{{service.service_name}}</a></li>
             {% endfor %}
           </ul>
         </div>

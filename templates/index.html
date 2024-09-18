@@ -58,6 +58,10 @@
       transform: translate(15px, 0);
     }
 
+    .services .service-item:hover {
+      box-shadow: 0px 0px 50px;
+    }
+
     .services .read-more {
       background: var(--accent-color);
       color: var(--contrast-color);
@@ -109,7 +113,7 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home<br></a></li>
+          <li><a href="/" class="active">Home<br></a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
@@ -306,14 +310,15 @@
 
         <div class="row gy-4">
           {% for service in services %}
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item item-cyan position-relative">
-              <img src="{{service.banner.url}}" alt="{{service.name}}">
-                <h3>{{service.name}}</h3>
-              </a>
-              <p>{{service.details}}</p>
-            </div>
-          </div><!-- End Service Item -->
+          <div class="col-lg-4 col-md-6" style="cursor: pointer;" data-aos="fade-up" data-aos-delay="100">
+            <a href="/services/{{service.service_name}}" style="text-decoration: none; color: inherit;">
+              <div class="service-item item-cyan position-relative">
+                <img src="{{service.banner.url}}" alt="{{service.service_name}}">
+                <h3>{{service.service_name}}</h3>
+                <p>{{service.details}}</p>
+              </div>
+            </a>
+          </div>          
           {% endfor %}
         </div>
         <div class="explore-more" data-aos="fade-up" data-aos-delay="200">
@@ -700,7 +705,7 @@
           <h4>Our Services</h4>
           <ul>
             {% for service in services %}
-            <li><a href="/services/{{service.name}}">{{service.name}}</a></li>
+            <li><a href="/services/{{service.service_name}}">{{service.service_name}}</a></li>
             {% endfor %}
           </ul>
         </div>

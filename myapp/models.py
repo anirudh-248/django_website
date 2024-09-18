@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -14,8 +15,10 @@ class Feature(models.Model):
 
 class Service(models.Model):
     banner = models.ImageField(default='fallback.png', blank=True)
-    name = models.CharField(max_length=100)
+    service_name = models.CharField(max_length=100, null=True)
+    provider_name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
+    service_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
 class Portfolio(models.Model):
     name = models.CharField(max_length=100, default='Product')
