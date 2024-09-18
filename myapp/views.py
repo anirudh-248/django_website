@@ -7,7 +7,7 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
     features = Feature.objects.all()
-    services = Service.objects.all()
+    services = Service.objects.all()[:3]
     portfolios = Portfolio.objects.all()
     team = Team.objects.all()
     reviews = Review.objects.all()
@@ -85,7 +85,8 @@ def post(request, pk):
     return render(request, 'post.html', {'pk':pk})
 
 def service_details(request):
-    return render(request, 'service-details.html')
+    services = Service.objects.all()
+    return render(request, 'service-details.html', {'services': services})
 
 def portfolio_details(request):
     return render(request, 'portfolio-details.html')
