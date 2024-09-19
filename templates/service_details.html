@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - {{name}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .card {
+            margin: 25px 25px 25px 25px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     {% for service in services %}
     {% if service.service_name == name %}
-    <h1>Service: {{name}}</h1>
-    <img src="{{service.banner.url}}" alt="{{name}}">
-    <h1>Provider: {{service.provider_name}}</h1>
-    <h1>Details: {{service.details}}</h1>
-    <h1>Cost: Rs. {{service.service_cost}}</h1>
-    <br>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{service.banner.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{service.provider_name}}</h5>
+          <p class="card-text">{{service.details}}</p>
+          <h3>₹{{service.service_cost}}</h3>
+          <br>
+          <a href="#" class="btn btn-primary">Buy now</a>
+        </div>
+    </div>
     {% endif %}
     {% endfor %}
 </body>
