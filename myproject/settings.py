@@ -80,7 +80,7 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 ATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/myproject',
+        default='postgresql://postgres:anirudh_248@localhost:5432/myproject',
         conn_max_age=600
     )
 }
