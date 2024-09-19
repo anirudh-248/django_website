@@ -14,7 +14,7 @@ class Feature(models.Model):
     banner = models.ImageField(default='fallback.png', blank=True)
 
 class Service(models.Model):
-    banner = models.ImageField(default='fallback.png', blank=True)
+    banner = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
     service_name = models.CharField(max_length=100, null=True)
     provider_name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
