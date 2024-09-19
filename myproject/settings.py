@@ -79,7 +79,9 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:anirudh_248@localhost:5432/myproject',
+        conn_max_age=600
     )
 }
 
@@ -119,6 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
