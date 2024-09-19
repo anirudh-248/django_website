@@ -13,5 +13,5 @@ python manage.py migrate
 
 if [[ $CREATE_SUPERUSER ]];
 then
-  python myproject/manage.py createsuperuser --no-input
+  python django_website/manage.py createsuperuser --no-input
 fi
