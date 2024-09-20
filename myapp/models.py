@@ -11,7 +11,7 @@ class UserProfile(models.Model):
 class Feature(models.Model):
     name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
-    banner = models.ImageField(default='fallback.png', blank=True)
+    banner = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
 
 class Service(models.Model):
     banner = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
@@ -22,18 +22,18 @@ class Service(models.Model):
 
 class Portfolio(models.Model):
     name = models.CharField(max_length=100, default='Product')
-    image = models.ImageField(default='fallback.png', blank=True)
+    image = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
-    image = models.ImageField(default='fallback.png', blank=True)
+    image = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
 
 class Review(models.Model):
     review = models.CharField(max_length=500)
     reviewer_name = models.CharField(max_length=100)
     reviewer_designation = models.CharField(max_length=100)
-    reviewer_image = models.ImageField(default='fallback.png', blank=True)
+    reviewer_image = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
 
 class Faq(models.Model):
     question = models.CharField(max_length=100)
