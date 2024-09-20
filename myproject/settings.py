@@ -79,12 +79,30 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default='postgresql://myproject:BvKdiiX6j79AVxT7XQCRdQYBMHWdy6Jr@dpg-crm360l6l47c73epv0rg-a.oregon-postgres.render.com/myproject_jjj3',
+#         conn_max_age=600
+#     )
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://myproject:BvKdiiX6j79AVxT7XQCRdQYBMHWdy6Jr@dpg-crm360l6l47c73epv0rg-a.oregon-postgres.render.com/myproject_jjj3',
-        conn_max_age=600
-    )
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': 'wedeasedb',
+
+        'USER': 'anirudh',
+
+        'PASSWORD': 'anirudh_248',
+
+        'HOST': 'myproject-db.c10s0ug4k4kk.ap-southeast-2.rds.amazonaws.com',
+
+        'PORT': '5432',
+    }
 }
 
 
@@ -139,12 +157,14 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
 # AWS S3 Configuration
 AWS_ACCESS_KEY_ID = 'AKIAZPPF7YMF5RYG562F'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'myprojectmedia'
 AWS_S3_REGION_NAME = 'ap-southeast-2'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+
 
 # Media files via S3
 STORAGES = {
