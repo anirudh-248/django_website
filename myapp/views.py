@@ -21,10 +21,6 @@ def index(request):
         'faqs': faqs,
     })
 
-def counter(request):
-    posts = [1,2,3,4,5,'tim','tom']
-    return render(request, 'counter.html', {'posts':posts})
-
 def register(request):
     if request.method=='POST':
         fname = request.POST['fname']
@@ -81,8 +77,23 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-def post(request, pk):
-    return render(request, 'post.html', {'pk':pk})
+def customer(request):
+    services = Service.objects.distinct('service_name')
+    return render(request, 'customer.html', {'services': services})
+
+def customer_services(request, name):
+    services = Service.objects.all()
+    services_d = Service.objects.distinct('service_name')
+    return render(request, 'customer-services.html', {'services': services, 'services_d': services_d, 'name': name})
+
+def service_provider(request):
+    services = Service.objects.distinct('service_name')
+    return render(request, 'service-provider.html', {'services': services})
+
+def sp_services(request, name):
+    services = Service.objects.all()
+    services_d = Service.objects.distinct('service_name')
+    return render(request, 'sp-services.html', {'services': services, 'services_d': services_d, 'name': name})
 
 def services(request):
     services = Service.objects.distinct('service_name')
@@ -94,8 +105,8 @@ def service_details(request, name):
     return render(request, 'service_details.html', {'services': services, 'services_d': services_d, 'name': name})
 
 def portfolio_details(request):
-    footer_services = Service.objects.distinct('service_name')[:5]
-    return render(request, 'portfolio-details.html', {'footer_services': footer_services})
+    services = Service.objects.distinct('service_name')
+    return render(request, 'portfolio-details.html', {'services': services})
 
 def user_form(request):
     if request.method=='POST':

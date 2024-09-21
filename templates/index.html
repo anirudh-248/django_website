@@ -116,7 +116,13 @@
         <ul>
           <li><a href="/" class="active">Home<br></a></li>
           <li><a href="#about">About</a></li>
+          {% if user.userprofile.user_type == 'customer' %}
+          <li><a href="/customer">Services</a></li>
+          {% elif user.userprofile.user_type == 'service-provider' %}
+          <li><a href="/service-provider">Services</a></li>
+          {% else %}
           <li><a href="#services">Services</a></li>
+          {% endif %}
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -174,9 +180,9 @@
         <div class="text-center" data-aos="zoom-out" data-aos-delay="100">
           {% if user.is_authenticated %}
             {% if user.userprofile.user_type == 'customer' %}
-            <a href="user-form" class="btn-get-started">Get Started</a>
+            <a href="/customer" class="btn-get-started">Get Started</a>
             {% elif user.userprofile.user_type == 'service-provider' %}
-            <a href="sp-form" class="btn-get-started">Get Started</a>
+            <a href="/service-provider" class="btn-get-started">Get Started</a>
             {% else %}
             <a href="/" class="btn-get-started">Get Started</a>
             {% endif %}
@@ -303,7 +309,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
+        <h2>Our Services</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
@@ -312,18 +318,33 @@
         <div class="row gy-4">
           {% for service in services %}
           <div class="col-lg-4 col-md-6" style="cursor: pointer;" data-aos="fade-up" data-aos-delay="100">
-            <a href="/services/{{service.service_name}}" style="text-decoration: none; color: inherit;">
+            {% if user.userprofile.user_type == 'customer' %}
+            <a href="/customer" style="text-decoration: none; color: inherit;">
               <div class="service-item item-cyan position-relative">
                 <img src="{{service.banner.url}}" alt="{{service.service_name}}">
                 <h3>{{service.service_name}}</h3>
                 <p>{{service.details}}</p>
               </div>
             </a>
+            {% elif user.userprofile.user_type == 'service-provider' %}
+            <a href="/service-provider" style="text-decoration: none; color: inherit;">
+              <div class="service-item item-cyan position-relative">
+                <img src="{{service.banner.url}}" alt="{{service.service_name}}">
+                <h3>{{service.service_name}}</h3>
+                <p>{{service.details}}</p>
+              </div>
+            </a>
+            {% else %}
+            <a href="#services" style="text-decoration: none; color: inherit;">
+              <div class="service-item item-cyan position-relative">
+                <img src="{{service.banner.url}}" alt="{{service.service_name}}">
+                <h3>{{service.service_name}}</h3>
+                <p>{{service.details}}</p>
+              </div>
+            </a>
+            {% endif %}
           </div>          
           {% endfor %}
-        </div>
-        <div class="explore-more" data-aos="fade-up" data-aos-delay="200">
-          <a href="services" class="read-more"><span>Explore More</span><i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -696,7 +717,13 @@
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/aboutus">About us</a></li>
-            <li><a href="/services">Services</a></li>
+            {% if user.userprofile.user_type == 'customer' %}
+            <li><a href="/customer">Services</a></li>
+            {% elif user.userprofile.user_type == 'service-provider' %}
+            <li><a href="/service-provider">Services</a></li>
+            {% else %}
+            <li><a href="#services">Services</a></li>
+            {% endif %}
             <li><a href="#">Terms of service</a></li>
             <li><a href="#">Privacy policy</a></li>
           </ul>
@@ -706,7 +733,13 @@
           <h4>Our Services</h4>
           <ul>
             {% for service in services %}
-            <li><a href="/services/{{service.service_name}}">{{service.service_name}}</a></li>
+              {% if user.userprofile.user_type == 'customer' %}
+              <li><a href="/customer/{{service.service_name}}">{{service.service_name}}</a></li>
+              {% elif user.userprofile.user_type == 'service-provider' %}
+              <li><a href="/service-provider/{{service.service_name}}">{{service.service_name}}</a></li>
+              {% else %}
+              <li><a href="#services">{{service.service_name}}</a></li>
+              {% endif %}
             {% endfor %}
           </ul>
         </div>
