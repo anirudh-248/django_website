@@ -90,7 +90,8 @@ def services(request):
 
 def service_details(request, name):
     services = Service.objects.all()
-    return render(request, 'service_details.html', {'services': services, 'name': name})
+    services_d = Service.objects.distinct('service_name')
+    return render(request, 'service_details.html', {'services': services, 'services_d': services_d, 'name': name})
 
 def portfolio_details(request):
     footer_services = Service.objects.distinct('service_name')[:5]
