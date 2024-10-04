@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - WedHub</title>
+    <title>Register - WedEase</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         function toggleServiceProviderFields() {
@@ -20,14 +21,9 @@
     </script>
 </head>
 
-<body class="bg-gray-100 bg-cover bg-center"
-    style="background-image: url('');">
-
+<body class="bg-[#fdf5f5] font-['Poppins',sans-serif] bg-[url]" style="background-image: url('');">
     
-    {% load static %}
-
-    
-    <header id="header" class="header py-2 sticky top-0 z-10 backdrop-blur-md bg-transparent">
+    <header id="header" class="header py-8 px-8 sticky top-0 z-10 backdrop-blur-md bg-transparent">
         <div class="container-fluid container-xl mx-auto flex items-center justify-between">
            
             <a href="/" class="logo flex items-center space-x-3">
@@ -52,33 +48,14 @@
                     <li><a href="/#portfolio" class="hover:text-pink-600">Portfolio</a></li>
                     <li><a href="/#team" class="hover:text-pink-600">Team</a></li>
                     <li><a href="/#contact" class="hover:text-pink-600">Contact</a></li>
-                    <li class="relative group">
-                        <a href="#" class="hover:text-pink-600">Dropdown <i class="bi bi-chevron-down"></i></a>
-                        <ul class="absolute hidden group-hover:block bg-white border rounded-lg shadow-lg mt-2 py-2">
-                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Dropdown 1</a></li>
-                            <li class="relative group">
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Deep Dropdown <i class="bi bi-chevron-down"></i></a>
-                                <ul class="absolute left-full top-0 hidden group-hover:block bg-white border rounded-lg shadow-lg py-2">
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Deep Dropdown 1</a></li>
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Deep Dropdown 2</a></li>
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Deep Dropdown 3</a></li>
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Deep Dropdown 4</a></li>
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Dropdown 2</a></li>
-                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Dropdown 3</a></li>
-                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Dropdown 4</a></li>
-                        </ul>
-                    </li>
+                    
                 </ul>
             </nav>
 
-           
             {% if user.is_authenticated %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700" href="logout">Logout</a>
+            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="logout">Logout</a>
             {% else %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700" href="login">Login</a>
+            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="login">Login</a>
             {% endif %}
         </div>
     </header>

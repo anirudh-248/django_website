@@ -98,6 +98,21 @@
       margin-top: 10px;
       text-align: center;
     }
+
+    .contact-button {
+      width: 200px;
+      border: none;
+      transition: 0.5s;
+      margin-top: 5px;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #2487ce;
+      color: white;
+    }
+
+    .contact-button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 
@@ -126,23 +141,6 @@
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -345,6 +343,19 @@
             {% endif %}
           </div>          
           {% endfor %}
+          {% if user.userprofile.user_type == 'customer' %}
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="200" style="text-align: center; margin-top: 10px;">
+            <a href="customer" class="read-more"><span>Explore More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+          {% elif user.userprofile.user_type == 'service-provider' %}
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="200" style="text-align: center; margin-top: 10px;">
+            <a href="service-provider" class="read-more"><span>Explore More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+          {% else %}
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="200" style="text-align: center; margin-top: 10px;">
+            <a href="#services" class="read-more"><span>Explore More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+          {% endif %}
         </div>
       </div>
 
@@ -653,40 +664,45 @@
           <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7778.222542493343!2d77.5176278!3d12.900566!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3fa7243af9c3%3A0x9bed6669a38d1c3!2sRNS%20INSTITUTE%20OF%20TECHNOLOGY!5e0!3m2!1sen!2sin!4v1726553190142!5m2!1sen!2sin" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div><!-- End Google Maps -->
 
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <div class="d-flex justify-content-between align-items-center flex-wrap" data-aos="fade-up" data-aos-delay="300">
-              
-              <div class="info-item d-flex align-items-center">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd, Channasandra, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098</p>
-                </div>
-              </div><!-- End Info Item -->
-        
-              <div class="info-item d-flex align-items-center">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Us</h3>
-                  <p>+91 10101 01010</p>
-                </div>
-              </div><!-- End Info Item -->
-        
-              <div class="info-item d-flex align-items-center">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>wedease@gmail.com</p>
-                </div>
-              </div><!-- End Info Item -->
-        
-              <div class="info-item d-flex align-items-center">
-                <a href="contact"><button type="submit">Send a message</button></a>
+        <div class="row gy-4 d-flex justify-content-between">
+    
+          <div class="col-lg-4 col-md-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>Dr. Vishnuvardhana Road Post,</p>
+                <p>RNS Farms Rd, Channasandra,</p>
+                <p>Rajarajeshwari Nagar,</p>
+                <p>Bengaluru, Karnataka 560098</p>
               </div>
-        
-            </div>
+            </div><!-- End Info Item -->
           </div>
+  
+          <div class="col-lg-4 col-md-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+91 10101 01010</p>
+              </div>
+            </div><!-- End Info Item -->
+          </div>
+  
+          <div class="col-lg-4 col-md-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>wedease@gmail.com</p>
+              </div>
+            </div><!-- End Info Item -->
+          </div>
+    
+        </div><!-- End Row -->
+    
+        <div class="text-center mt-4">
+          <a href="/contact"><button class="contact-button" data-aos="fade-up" data-aos-delay="500">Send Message</button></a>
         </div>        
 
       </div>
