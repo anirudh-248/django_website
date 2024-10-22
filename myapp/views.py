@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-
+ 
 # Create your views here.
 def index(request):
     features = Feature.objects.all()
@@ -77,14 +77,44 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
+from django.db.models import Count
+
 def customer(request):
-    services = Service.objects.distinct('service_name')
-    return render(request, 'customer.html', {'services': services})
+    # Get distinct service names and corresponding provider names
+    services_by_name = Service.objects.values('service_name').annotate(
+        providers=Count('provider_name')
+    )
+    
+    services = Service.objects.order_by('service_name', 'provider_name')
+    
+    return render(request, 'customer.html', {
+        'services_by_name': services_by_name,
+        'services': services
+    })
+from django.shortcuts import render
+from .models import Service
 
 def customer_services(request, name):
     services = Service.objects.all()
     services_d = Service.objects.distinct('service_name')
+    
+    # Initialize filters
+    search_name = request.GET.get('search_name', '')
+    min_price = request.GET.get('min_price', None)
+    max_price = request.GET.get('max_price', None)
+
+    # Filter by service name
+    if search_name:
+        services = services.filter(service_name__icontains=search_name)
+
+    # Filter by price range
+    if min_price:
+        services = services.filter(service_cost__gte=min_price)
+    if max_price:
+        services = services.filter(service_cost__lte=max_price)
+
     return render(request, 'customer-services.html', {'services': services, 'services_d': services_d, 'name': name})
+
 
 def service_provider(request):
     services = Service.objects.distinct('service_name')

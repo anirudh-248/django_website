@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -27,7 +27,16 @@
 
     <style>
         .card {
-            margin: 25px 25px 25px 25px;
+            margin: 25px;
+            width: 100%; /* Set to 100% for responsive design */
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column; /* Make card body a column */
+            align-items: center; /* Center items */
+        }
+        .provider-name {
+            font-weight: bold; /* Optional: make provider name bold */
         }
     </style>
 
@@ -35,38 +44,36 @@
 <body>
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
-    
             <a href="/" class="logo d-flex align-items-center me-auto">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="{% static 'assets/img/logo.png' %}" alt="">
                 <h1 class="sitename">WedEase</h1>
             </a>
     
             <nav id="navmenu" class="navmenu">
                 <ul>
-                <li><a href="/">Home<br></a></li>
-                <li><a href="/#about">About</a></li>
-                <li><a href="/customer" class="active">Services</a></li>
-                <li><a href="/#portfolio">Portfolio</a></li>
-                <li><a href="/#team">Team</a></li>
-                <li><a href="/#contact">Contact</a></li>
-                <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                    <li><a href="#">Dropdown 1</a></li>
-                    <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <li><a href="/">Home<br></a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/customer" class="active">Services</a></li>
+                    <li><a href="/#portfolio">Portfolio</a></li>
+                    <li><a href="/#team">Team</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                        <li><a href="#">Deep Dropdown 1</a></li>
-                        <li><a href="#">Deep Dropdown 2</a></li>
-                        <li><a href="#">Deep Dropdown 3</a></li>
-                        <li><a href="#">Deep Dropdown 4</a></li>
-                        <li><a href="#">Deep Dropdown 5</a></li>
+                            <li><a href="#">Dropdown 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dropdown 2</a></li>
+                            <li><a href="#">Dropdown 3</a></li>
+                            <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Dropdown 2</a></li>
-                    <li><a href="#">Dropdown 3</a></li>
-                    <li><a href="#">Dropdown 4</a></li>
-                    </ul>
-                </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -77,21 +84,39 @@
             {% endif %}
         </div>
     </header>
-
-    {% for service in services %}
-    {% if service.service_name == name %}
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{service.banner.url}}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{service.provider_name}}</h5>
-          <p class="card-text">{{service.details}}</p>
-          <h3>₹{{service.service_cost}}</h3>
-          <br>
-          <a href="#" class="btn btn-primary">Buy now</a>
+    <div class="container">
+        <h2>Search Services</h2>
+        <form method="GET" action="{% url 'customer_services' name %}">
+            <div class="mb-3">
+                <label for="min_price" class="form-label">Minimum Price</label>
+                <input type="number" id="min_price" name="min_price" class="form-control" placeholder="Enter minimum price" value="{{ request.GET.min_price }}">
+            </div>
+            <div class="mb-3">
+                <label for="max_price" class="form-label">Maximum Price</label>
+                <input type="number" id="max_price" name="max_price" class="form-control" placeholder="Enter maximum price" value="{{ request.GET.max_price }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <div class="container mt-4">
+        <h2>Available Services</h2>
+        <div class="row">
+            {% for service in services %}
+                {% if service.service_name == name %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ service.banner.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.provider_name }}</h5>
+                        <p class="card-text">{{ service.details }}</p>
+                        <h3>₹{{ service.service_cost }}</h3>
+                        <br>
+                        <a href="#" class="btn btn-primary">Buy now</a>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
-    {% endif %}
-    {% endfor %}
 
     <footer id="footer" class="footer light-background">
         <div class="container footer-top">
@@ -110,32 +135,32 @@
                 </div>
         
                 <div class="col-lg-2 col-6 footer-links">
-                <h4>Useful Links</h4>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/aboutus">About us</a></li>
-                    <li><a href="/customer">Services</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Privacy policy</a></li>
-                </ul>
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/aboutus">About us</a></li>
+                        <li><a href="/customer">Services</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
                 </div>
         
                 <div class="col-lg-2 col-6 footer-links">
-                <h4>Our Services</h4>
-                <ul>
-                    {% for service in services_d %}
-                    <li><a href="/customer/{{service.service_name}}">{{service.service_name}}</a></li>
-                    {% endfor %}
-                </ul>
+                    <h4>Our Services</h4>
+                    <ul>
+                        {% for service in services_d %}
+                        <li><a href="/customer/{{service.service_name}}">{{service.service_name}}</a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
         
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                <h4>Contact Us</h4>
-                <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd,</p>
-                <p>Channasandra, Rajarajeshwari Nagar,</p>
-                <p>Bengaluru, Karnataka - 560098</p>
-                <p class="mt-4"><strong>Phone:</strong> <span>+91 10101 01010</span></p>
-                <p><strong>Email:</strong> <span>wedease@gmail.com</span></p>
+                    <h4>Contact Us</h4>
+                    <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd,</p>
+                    <p>Channasandra, Rajarajeshwari Nagar,</p>
+                    <p>Bengaluru, Karnataka - 560098</p>
+                    <p class="mt-4"><strong>Phone:</strong> <span>+91 10101 01010</span></p>
+                    <p><strong>Email:</strong> <span>wedease@gmail.com</span></p>
                 </div>
             </div>
         </div>
