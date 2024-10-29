@@ -38,6 +38,41 @@
         .provider-name {
             font-weight: bold; /* Optional: make provider name bold */
         }
+        .sidebar-container {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width:-10;
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+            transition: 0.3s;
+            padding-top: 60px;
+            z-index: 1000;
+            border-right: 1px solid #ddd;
+        }
+
+        /* Sidebar expands on hover */
+        .sidebar-container:hover {
+            width: 250px; /* Set width for expanded view */
+        }
+
+        /* Content shift when sidebar is open */
+        .content {
+            transition: margin-left 0.3s;
+            margin-left: 0;
+        }
+
+        .sidebar-container:hover + .content {
+            margin-left: 250px; /* Adjust main content margin when sidebar expands */
+        }
+
+        /* Style the filter form inside the sidebar */
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
     </style>
 
 </head>
@@ -84,39 +119,52 @@
             {% endif %}
         </div>
     </header>
-    <div class="container">
-        <h2>Search Services</h2>
-        <form method="GET" action="{% url 'customer_services' name %}">
-            <div class="mb-3">
-                <label for="min_price" class="form-label">Minimum Price</label>
-                <input type="number" id="min_price" name="min_price" class="form-control" placeholder="Enter minimum price" value="{{ request.GET.min_price }}">
-            </div>
-            <div class="mb-3">
-                <label for="max_price" class="form-label">Maximum Price</label>
-                <input type="number" id="max_price" name="max_price" class="form-control" placeholder="Enter maximum price" value="{{ request.GET.max_price }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </div>
-    <div class="container mt-4">
-        <h2>Available Services</h2>
+    
+    <div class="container-fluid">
         <div class="row">
-            {% for service in services %}
-                {% if service.service_name == name %}
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ service.banner.url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ service.provider_name }}</h5>
-                        <p class="card-text">{{ service.details }}</p>
-                        <h3>₹{{ service.service_cost }}</h3>
-                        <br>
-                        <a href="#" class="btn btn-primary">Buy now</a>
-                    </div>
+            <!-- Sidebar (Left Side) -->
+            <div class="col-md-3">
+                <div class="collapse show" id="searchFilter">
+                    <h2>Search Services</h2>
+                    <form method="GET" action="{% url 'customer_services' name %}">
+                        <div class="mb-3">
+                            <label for="min_price" class="form-label">Minimum Price</label>
+                            <input type="number" id="min_price" name="min_price" class="form-control" placeholder="Enter minimum price" value="{{ request.GET.min_price }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="max_price" class="form-label">Maximum Price</label>
+                            <input type="number" id="max_price" name="max_price" class="form-control" placeholder="Enter maximum price" value="{{ request.GET.max_price }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
                 </div>
-                {% endif %}
-            {% endfor %}
+            </div>
+    
+            <!-- Main Content (Right Side) -->
+            <div class="col-md-9">
+                <h2>Available Services</h2>
+                <div class="row">
+                    {% for service in services %}
+                        {% if service.service_name == name %}
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ service.banner.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ service.provider_name }}</h5>
+                                <p class="card-text">{{ service.details }}</p>
+                                <h3>₹{{ service.service_cost }}</h3>
+                                <br>
+                                <a href="#" class="btn btn-primary">Buy now</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
+    
+    <!-- Add Bootstrap JS for the collapse feature -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    
 
     <footer id="footer" class="footer light-background">
         <div class="container footer-top">

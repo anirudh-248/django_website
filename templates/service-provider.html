@@ -94,52 +94,56 @@
         </nav>
       </div>
     </div><!-- End Page Title -->
-
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="services-list">
-              {% for service in services %}
-              <a href="/service-provider/{{service.service_name}}">{{service.service_name}}</a>
-              {% endfor %}
-            </div>
-
-            <h4>Enim qui eos rerum in delectus</h4>
-            <p>Nam voluptatem quasi numquam quas fugiat ex temporibus quo est. Quia aut quam quod facere ut non occaecati ut aut. Nesciunt mollitia illum tempore corrupti sed eum reiciendis. Maxime modi rerum.</p>
+    <div class="container mt-5">
+      <h1>Service Provider</h1>
+  </div>
+  <div class="container mt-5">
+    <h2>Your Services</h2>
+    
+    <!-- Button to toggle the form -->
+    <button type="button" class="btn btn-primary float-right" data-toggle="collapse" data-target="#addServiceForm">
+        +
+    </button>
+    
+    <!-- Collapsible form for adding a new service -->
+    <div id="addServiceForm" class="collapse mt-3">
+      <form action="{% url 'service-provider' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="service_name">Select Service Name:</label>
+              <select name="service_name" id="service_name" class="form-control">
+                  {% for service in services %}
+                      <option value="{{ service.service_name }}">{{ service.service_name }}</option>
+                  {% endfor %}
+              </select>
           </div>
-
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-            <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
-            <p>
-              Blanditiis voluptate odit ex error ea sed officiis deserunt. Cupiditate non consequatur et doloremque consequuntur. Accusantium labore reprehenderit error temporibus saepe perferendis fuga doloribus vero. Qui omnis quo sit. Dolorem architecto eum et quos deleniti officia qui.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-            </ul>
-            <p>
-              Est reprehenderit voluptatem necessitatibus asperiores neque sed ea illo. Deleniti quam sequi optio iste veniam repellat odit. Aut pariatur itaque nesciunt fuga.
-            </p>
-            <p>
-              Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae mollitia doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex repellendus eveniet velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum. Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum at consequatur vero. Architecto ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit dolore alias explicabo ea.
-            </p>
+          <div class="form-group">
+              <label for="provider_name">Provider Name:</label>
+              <input type="text" name="provider_name" class="form-control" required>
           </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Service Details Section -->
-
+          <div class="form-group">
+              <label for="details">Details:</label>
+              <textarea name="details" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+              <label for="service_cost">Service Cost:</label>
+              <input type="number" step="0.01" name="service_cost" class="form-control" required>
+          </div>
+          <div class="form-group">
+              <label for="banner">Upload Banner:</label>
+              <input type="file" name="banner" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Add Service</button>
+      </form>
+  </div>
+  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+         
   </main>
 
-  <footer id="footer" class="footer light-background">
+  <footer id="footer" class="footer light-background" style="margin-top: 20px;">
 
     <div class="container footer-top">
       <div class="row gy-4">

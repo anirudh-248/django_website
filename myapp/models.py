@@ -12,13 +12,16 @@ class Feature(models.Model):
     name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
     banner = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
-
+    
 class Service(models.Model):
     banner = models.ImageField(default='fallback.png', blank=True, upload_to='uploads/')
     service_name = models.CharField(max_length=100, null=True)
     provider_name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
     service_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+
+    def __str__(self):
+        return self.service_name
 
 class Portfolio(models.Model):
     name = models.CharField(max_length=100, default='Product')
