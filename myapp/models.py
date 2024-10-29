@@ -21,7 +21,7 @@ class Service(models.Model):
     service_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     def __str__(self):
-        return self.service_name
+        return f"{self.service_name} - {self.provider_name}"
 
 class Portfolio(models.Model):
     name = models.CharField(max_length=100, default='Product')
