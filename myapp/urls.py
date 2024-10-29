@@ -16,5 +16,6 @@ urlpatterns = [
     path('user-form', views.user_form, name='user-form'),
     path('sp-form', views.sp_form, name='sp-form'),
     path('contact', views.contact, name='contact'),
-    path('aboutus', views.aboutus, name='aboutus')
+    path('aboutus', views.aboutus, name='aboutus'),
+    path('service-provider/delete/<int:service_id>', views.delete_service, name='delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact
 from django.contrib.auth.models import User, auth
@@ -117,7 +117,7 @@ def service_provider(request):
     if request.method == 'POST':
         # Get form data
         service_name = request.POST.get('service_name')
-        provider_name = request.POST.get('provider_name')
+        provider_name = request.user.username
         details = request.POST.get('details')
         service_cost = request.POST.get('service_cost')
         banner = request.FILES.get('banner')
@@ -140,6 +140,17 @@ def service_provider(request):
     services = Service.objects.distinct('service_name')
     services_filtered = Service.objects.filter(provider_name=request.user.username)
     return render(request, 'service-provider.html', {'services': services, 'services_f': services_filtered})
+
+def delete_service(request,service_id): 
+    service = get_object_or_404(Service, id=service_id)
+    if request.method=='POST':
+        service.delete() 
+        previous_page = request.META.get('HTTP_REFERER')
+        if previous_page:
+            return redirect(previous_page)
+        else:
+            return redirect('default-view')
+    return redirect('/service-provider')
 
 def sp_services(request, name):
     services = Service.objects.all()
