@@ -136,10 +136,20 @@
           <button type="submit" class="btn btn-success">Add Service</button>
       </form>
   </div>
-  
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% for service in services_f %}
+  <div class="col-lg-4 col-md-6 mb-4" style="margin-top: 20px;">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{service.banner.url}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{service.provider_name}}</h5>
+        <p class="card-text">{{service.details}}</p>
+        <h3>₹{{service.service_cost}}</h3>
+        <br>
+        <a href="#" class="btn btn-primary">Buy now</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
          
   </main>
 
@@ -209,6 +219,9 @@
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
   <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>

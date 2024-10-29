@@ -113,14 +113,14 @@ def customer_services(request, name):
 
 @login_required
 def service_provider(request):
-
+    
     if request.method == 'POST':
         # Get form data
         service_name = request.POST.get('service_name')
         provider_name = request.POST.get('provider_name')
         details = request.POST.get('details')
         service_cost = request.POST.get('service_cost')
-        banner = request.FILES.get('banner')  # Handle file uploads
+        banner = request.FILES.get('banner')
 
         # Create a new service instance
         new_service = Service(
@@ -135,10 +135,11 @@ def service_provider(request):
         new_service.save()
 
         # Redirect to the service provider page after saving
-        return redirect('service_provider')
+        return redirect('service-provider')
 
     services = Service.objects.distinct('service_name')
-    return render(request, 'service-provider.html', {'services': services})
+    services_filtered = Service.objects.filter(provider_name=request.user.username)
+    return render(request, 'service-provider.html', {'services': services, 'services_f': services_filtered})
 
 def sp_services(request, name):
     services = Service.objects.all()
