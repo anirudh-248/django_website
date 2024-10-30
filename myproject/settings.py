@@ -99,7 +99,7 @@ DATABASES = {
 
         'PASSWORD': 'anirudh_248',
 
-        'HOST': 'myproject-db.c10s0ug4k4kk.ap-southeast-2.rds.amazonaws.com',
+        'HOST': 'database-1.c58cys20unyl.us-east-1.rds.amazonaws.com',
 
         'PORT': '5432',
     }
@@ -159,9 +159,10 @@ if DEBUG:
 
 
 # AWS S3 Configuration
-AWS_STORAGE_BUCKET_NAME = 'myprojectmedia'
-AWS_S3_REGION_NAME = 'ap-southeast-2'
+AWS_STORAGE_BUCKET_NAME = 'wedease-s3'
+AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+AWS_S3_FILE_OVERWRITE = False
 
 
 # Media files via S3
