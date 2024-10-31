@@ -120,7 +120,7 @@
                                     {% for service_group in services_by_name %}
                                         <div class="service-item">
                                             <!-- Display distinct service_name -->
-                                            <h2>{{ service_group.service_name }}</h2>
+                                            <a href="/customer/{{ service_group.service_name }}"><h2>{{ service_group.service_name }}</h2></a>
                             
                                             <div class="row provider-list">
                                                 <!-- Loop through providers for this service -->
