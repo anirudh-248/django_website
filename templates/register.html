@@ -34,29 +34,11 @@
             <!-- Navigation Menu -->
             <nav id="navmenu" class="navmenu">
                 <ul class="flex space-x-6 text-gray-800 font-medium">
-                    <li><a href="/" class="hover:text-pink-600">Home</a></li>
-                    <li><a href="aboutus" class="hover:text-pink-600">About</a></li>
-
-                    {% if user.userprofile.user_type == 'customer' %}
-                    <li><a href="/customer" class="hover:text-pink-600">Services</a></li>
-                    {% elif user.userprofile.user_type == 'service-provider' %}
-                    <li><a href="/service-provider" class="hover:text-pink-600">Services</a></li>
-                    {% else %}
-                    <li><a href="/#services" class="hover:text-pink-600">Services</a></li>
-                    {% endif %}
-
-                    <li><a href="/#portfolio" class="hover:text-pink-600">Portfolio</a></li>
-                    <li><a href="/#team" class="hover:text-pink-600">Team</a></li>
-                    <li><a href="/#contact" class="hover:text-pink-600">Contact</a></li>
-                    
+                 
                 </ul>
             </nav>
 
-            {% if user.is_authenticated %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="logout">Logout</a>
-            {% else %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="login">Login</a>
-            {% endif %}
+           
         </div>
     </header>
 
@@ -137,11 +119,7 @@
                             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400">
                     </div>
 
-                    <div>
-                        <label for="license" class="block text-sm font-medium text-gray-700">License ID:</label>
-                        <input type="text" name="license" id="license" placeholder="Enter your license ID"
-                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400">
-                    </div>
+                   
                 </div>
 
                 <div class="mt-6">

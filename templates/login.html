@@ -22,20 +22,8 @@
             
             <nav id="navmenu" class="navmenu">
                 <ul class="flex space-x-6 text-gray-800 font-medium">
-                    <li><a href="/" class="hover:text-pink-600">Home</a></li>
-                    <li><a href="aboutus" class="hover:text-pink-600">About</a></li>
-
-                    {% if user.userprofile.user_type == 'customer' %}
-                    <li><a href="/customer" class="hover:text-pink-600">Services</a></li>
-                    {% elif user.userprofile.user_type == 'service-provider' %}
-                    <li><a href="/service-provider" class="hover:text-pink-600">Services</a></li>
-                    {% else %}
-                    <li><a href="/#services" class="hover:text-pink-600">Services</a></li>
-                    {% endif %}
-
-                    <li><a href="/#portfolio" class="hover:text-pink-600">Portfolio</a></li>
-                    <li><a href="/#team" class="hover:text-pink-600">Team</a></li>
-                    <li><a href="/#contact" class="hover:text-pink-600">Contact</a></li>
+                   
+                   
                     
                 </ul>
             </nav>
