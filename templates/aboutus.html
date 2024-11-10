@@ -8,15 +8,12 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
   
-   
     <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
     <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-  
     
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -24,61 +21,44 @@
     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
   
-   
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet"> 
 </head>
 <body>
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="/" class="logo d-flex align-items-center me-auto">
+                <img src="{% static 'assets/img/logo.png' %}" alt="">
+                <h1 class="sitename">WedEase</h1>
+            </a>
     
-          <a href="/" class="logo d-flex align-items-center me-auto">
-            <!-- add image here -->
-            <img src="{% static 'assets/img/logo.png' %}" alt="">
-            <h1 class="sitename">WedEase</h1>
-          </a>
-    
-          <nav id="navmenu" class="navmenu">
-            <ul>
-              <li><a href="/">Home<br></a></li>
-              <li><a href="aboutus" class="active">About</a></li>
-              {% if user.userprofile.user_type == 'customer' %}
-              <li><a href="/customer">Services</a></li>
-              {% elif user.userprofile.user_type == 'service-provider' %}
-              <li><a href="/service-provider">Services</a></li>
-              {% else %}
-              <li><a href="/#services">Services</a></li>
-              {% endif %}
-              <li><a href="/#portfolio">Portfolio</a></li>
-              <li><a href="/#team">Team</a></li>
-              <li><a href="/#contact">Contact</a></li>
-              <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <nav id="navmenu" class="navmenu">
                 <ul>
-                  <li><a href="#">Dropdown 1</a></li>
-                  <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                      <li><a href="#">Deep Dropdown 1</a></li>
-                      <li><a href="#">Deep Dropdown 2</a></li>
-                      <li><a href="#">Deep Dropdown 3</a></li>
-                      <li><a href="#">Deep Dropdown 4</a></li>
-                      <li><a href="#">Deep Dropdown 5</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Dropdown 2</a></li>
-                  <li><a href="#">Dropdown 3</a></li>
-                  <li><a href="#">Dropdown 4</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="aboutus" class="active">About</a></li>
+                    {% if user.userprofile.user_type == 'customer' %}
+                        <li><a href="/customer">Services</a></li>
+                    {% elif user.userprofile.user_type == 'service-provider' %}
+                        <li><a href="/service-provider">Services</a></li>
+                    {% else %}
+                        <li><a href="/#services">Services</a></li>
+                    {% endif %}
+                    <li><a href="/#portfolio">Portfolio</a></li>
+                    <li><a href="/#team">Team</a></li>
+                    <li><a href="/#contact">Contact</a></li>
                 </ul>
-              </li>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-          </nav>
-          {% if user.is_authenticated %}
-          <a class="btn-getstarted" href="logout">Logout</a>
-          {% else %}
-          <a class="btn-getstarted" href="login">Login</a>
-          {% endif %}
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            
+            {% if user.is_authenticated %}
+                <a class="btn-getstarted" href="logout">Logout</a>
+            {% else %}
+                <a class="btn-getstarted" href="login">Login</a>
+            {% endif %}
         </div>
-      </header>
-    <h1 style="text-align: center; padding: 10px; margin-top: 20px;">About Us</h1>
+    </header>
+
+    <h1 class="about-title">About Us</h1>
     <p style="width: 75%; margin: 0 auto; margin-bottom: 40px; text-align: justify;">
       At WedEase, we believe your wedding day should be a celebration of love, joy, and unforgettable moments. But we also know that planning such an important event can quickly become overwhelming, with countless details to manage, vendors to coordinate, and decisions to make. That's where we come in.
       <br><br>
@@ -90,67 +70,163 @@
       <br><br>
       Join us on the journey to your perfect day, where we handle the details, and you make the memories.
     </p>
-    <footer id="footer" class="footer light-background">
 
-      <div class="container footer-top">
-        <div class="row gy-4">
-          <div class="col-lg-5 col-md-12 footer-about">
-            <a href="/" class="logo d-flex align-items-center">
-              <span class="sitename">WedEase</span>
-            </a>
-            <p>Planning a wedding can be a whirlwind of excitement and stress. At WedEase, we're here to make the process seamless and enjoyable. Our platform connects you with a vast network of top-notch vendors, offering everything from stunning venues to exquisite catering.</p>
-            <div class="social-links d-flex mt-4">
-              <a href=""><i class="bi bi-twitter"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
+    <footer id="footer" class="footer">
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-about">
+                    <a href="/" class="logo d-flex align-items-center">
+                        <span class="sitename">WedEase</span>
+                    </a>
+                    <p>Planning a wedding can be a whirlwind of excitement and stress...</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href=""><i class="bi bi-twitter"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/aboutus">About us</a></li>
+                        {% if user.userprofile.user_type == 'customer' %}
+                            <li><a href="/customer">Services</a></li>
+                        {% elif user.userprofile.user_type == 'service-provider' %}
+                            <li><a href="/service-provider">Services</a></li>
+                        {% else %}
+                            <li><a href="/#services">Services</a></li>
+                        {% endif %}
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        {% for service in services %}
+                            <li><a href="/#services">{{service.service_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-12 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>Dr. Vishnuvardhana Road, RNS Farms Rd,<br> Bengaluru, Karnataka - 560098</p>
+                    <p><strong>Phone:</strong> +91 10101 01010</p>
+                    <p><strong>Email:</strong> wedease@gmail.com</p>
+                </div>
             </div>
-          </div>
-  
-          <div class="col-lg-2 col-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/aboutus">About us</a></li>
-              {% if user.userprofile.user_type == 'customer' %}
-              <li><a href="/customer">Services</a></li>
-              {% elif user.userprofile.user_type == 'service-provider' %}
-              <li><a href="/service-provider">Services</a></li>
-              {% else %}
-              <li><a href="/#services">Services</a></li>
-              {% endif %}
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-  
-          <div class="col-lg-2 col-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              {% for service in services %}
-                {% if user.userprofile.user_type == 'customer' %}
-                <li><a href="/customer/{{service.service_name}}">{{service.service_name}}</a></li>
-                {% elif user.userprofile.user_type == 'service-provider' %}
-                <li><a href="/service-provider/{{service.service_name}}">{{service.service_name}}</a></li>
-                {% else %}
-                <li><a href="/#services">{{service.service_name}}</a></li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
-  
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-            <h4>Contact Us</h4>
-            <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd,</p>
-            <p>Channasandra, Rajarajeshwari Nagar,</p>
-            <p>Bengaluru, Karnataka - 560098</p>
-            <p class="mt-4"><strong>Phone:</strong> <span>+91 10101 01010</span></p>
-            <p><strong>Email:</strong> <span>wedease@gmail.com</span></p>
-          </div>
-  
         </div>
-      </div>
-  
     </footer>
 </body>
 </html>
+<style>
+
+body {
+    background-color: #fdf5f5;
+    font-family: 'Poppins', sans-serif;
+    color: #4a4a4a;
+}
+
+
+.header {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    transition: background-color 0.3s;
+}
+
+.header .logo img {
+    height: 50px;
+}
+
+.header .sitename {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e60073;
+}
+
+.header .navmenu ul li a {
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.header .navmenu ul li a:hover {
+    color: #e60073;
+}
+ 
+.header .btn-getstarted {
+    background-color: #e60073;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.header .btn-getstarted:hover {
+    background-color: #cc005f;
+}
+
+
+.about-title {
+    color: #e60073;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    text-align: justify;
+    line-height: 1.7;
+    color: #4a4a4a;
+}
+
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    color: #666;
+}
+
+.footer .footer-top .logo .sitename {
+    color: #e60073;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.footer p, .footer h4 {
+    color: #666;
+}
+
+.footer .footer-links h4 {
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.footer .footer-links ul li a {
+    color: #555;
+    transition: color 0.3s;
+}
+
+.footer .footer-links ul li a:hover {
+    color: #e60073;
+}
+
+.footer .social-links a {
+    color: #555;
+    transition: color 0.3s;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.footer .social-links a:hover {
+    color: #e60073;
+}
+</style>
