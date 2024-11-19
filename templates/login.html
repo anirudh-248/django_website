@@ -8,6 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - WedEase</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            overflow: hidden; 
+            height: 100vh; 
+        }
+    </style>
 </head>
 
 <body class="bg-[#fdf5f5] font-['Poppins',sans-serif] bg-[url]">    
@@ -68,10 +74,7 @@
                             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400">
                     </div>
     
-                    <div class="text-right">
-                        <a href="#" class="text-sm text-pink-600 hover:underline">Forgot password?</a>
-                    </div>
-    
+                  
                     <div>
                         <input type="submit" name="submit" id="submit" value="Sign in"
                             class="w-full bg-gray-700 hover:bg-gray-800 text-white py-2 rounded-lg font-semibold text-sm">
@@ -82,6 +85,9 @@
                     <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Logo" class="w-5 h-5">
                     <p class="text-sm text-gray-600">Sign in with Google</p>
                 </div>
+                <p class="text-center text-gray-600 text-sm mt-4">
+                <a href="forgotpassword" class="text-pink-600 hover:underline">Forgot Password</a>
+            </p>
     
                 <p class="text-center text-gray-600 text-sm mt-4">
                     Don't have an account? <a href="register" class="text-pink-600 hover:underline">Create account</a>
