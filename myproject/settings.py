@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,29 +77,33 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         # Replace this value with your local database's connection string.
-#         default='postgresql://myproject:BvKdiiX6j79AVxT7XQCRdQYBMHWdy6Jr@dpg-crm360l6l47c73epv0rg-a.oregon-postgres.render.com/myproject_jjj3',
-#         conn_max_age=600
-#     )
+
+#     'default': {
+
+#         'ENGINE': 'django.db.backends.postgresql',
+
+#         'NAME': 'wedeasedb',
+
+#         'USER': 'anirudh',
+
+#         'PASSWORD': 'anirudh_248',
+
+#         'HOST': 'database-1.c58cys20unyl.us-east-1.rds.amazonaws.com',
+
+#         'PORT': '5432',
+#     }
 # }
 
 DATABASES = {
-
     'default': {
-
         'ENGINE': 'django.db.backends.postgresql',
-
-        'NAME': 'wedeasedb',
-
-        'USER': 'anirudh',
-
+        'NAME': 'myproject',
+        'USER': 'postgres',
         'PASSWORD': 'anirudh_248',
-
-        'HOST': 'database-1.c58cys20unyl.us-east-1.rds.amazonaws.com',
-
-        'PORT': '5432',
+        'HOST': '127.0.0.1',  # localhost
+        'PORT': '5432',       # default PostgreSQL port
     }
 }
 

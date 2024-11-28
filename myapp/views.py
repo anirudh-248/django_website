@@ -215,3 +215,6 @@ def contact(request):
 def aboutus(request):
     services = Service.objects.distinct('service_name')
     return render(request, 'aboutus.html', {'services': services})
+
+def feedback(request):
+    return render(request, 'feedback.html')

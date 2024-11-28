@@ -18,4 +18,5 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('aboutus', views.aboutus, name='aboutus'),
     path('service-provider/delete/<int:service_id>', views.delete_service, name='delete'),
+    path('feedback', views.feedback, name='feedback'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
