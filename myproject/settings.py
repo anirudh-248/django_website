@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-@$p(5510e%=2lzwsad%p6!hn*#kq#++9@b^qk6vouc-i7103da"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['.onrender.com', '127.0.0.1', '13.55.221.108']
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
 
 
 # Application definition
@@ -97,14 +98,11 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'postgres',
-        'PASSWORD': 'anirudh_248',
-        'HOST': '127.0.0.1',  # localhost
-        'PORT': '5432',       # default PostgreSQL port
-    }
+    "default": dj_database_url.config(
+        default=os.getenv(
+            "DATABASE_URL", "postgres://local_user:local_password@127.0.0.1:5432/myproject"
+        )
+    )
 }
 
 
