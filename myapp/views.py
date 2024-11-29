@@ -79,8 +79,6 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-
-
 def customer(request):
     # Get distinct service names and corresponding provider names
     services_by_name = Service.objects.values('service_name').annotate(
@@ -108,8 +106,6 @@ def customer_services(request, name):
         services = services.filter(service_cost__lte=max_price)
 
     return render(request, 'customer-services.html', {'services': services, 'services_d': services_d, 'name': name})
-
-
 
 @login_required
 def service_provider(request):
