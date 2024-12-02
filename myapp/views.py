@@ -75,6 +75,9 @@ def login(request):
     else:
         return render(request, 'login.html')
     
+def forgot_password(request):
+    return render(request, 'forgotpassword.html')
+    
 def logout(request):
     auth.logout(request)
     return redirect('/')
