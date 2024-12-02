@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - EazyWeddings</title>
+</head>
+<body>
+    <h1>Cart</h1>
+    {% if cart_items %}
+        {% for item in cart_items %}
+            <p>Service name: {{ item.service.service_name }}</p>
+            <p>Provider name: {{ item.service.provider_name }}</p>
+            <p>Details: {{ item.service.details }}</p>
+            <p>Cost: ₹{{ item.service.service_cost }}</p>
+            <a href="cart/remove/{{ item.id }}">Remove</a>
+        {% endfor %}
+        <h2>Cart total: ₹{{ cart_total }}</h2>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+    <a href="/customer">Return to services page</a>
+</body>
+</html>

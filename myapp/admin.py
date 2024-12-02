@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact
+from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact, Cart
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
@@ -13,6 +13,7 @@ admin.site.register(Faq)
 admin.site.register(UserForm)
 admin.site.register(SpForm)
 admin.site.register(Contact)
+admin.site.register(Cart)
 
 admin.site.unregister(User)
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact
+from .models import Feature, Service, Portfolio, Team, Review, Faq, UserForm, SpForm, UserProfile, Contact, Cart
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.db.models import Count
@@ -214,3 +214,26 @@ def aboutus(request):
 
 def feedback(request):
     return render(request, 'feedback.html')
+
+def buy_service(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+    return render(request, 'buy_service.html', {'service': service})
+
+def cart(request):
+    if request.method == 'POST':
+        service_id = request.POST.get('service_id')
+        service = get_object_or_404(Service, id=service_id)
+        Cart.objects.create(
+            user=request.user,
+            service=service,
+        )
+        return redirect('cart')
+    
+    cart_items = Cart.objects.filter(user=request.user)
+    cart_total = sum([item.service.service_cost for item in cart_items])
+    return render(request, 'cart.html', {'cart_items': cart_items, 'cart_total': cart_total})
+
+def remove_from_cart(request, item_id):
+    cart_item = Cart.objects.filter(user=request.user, id=item_id)
+    cart_item.delete()
+    return redirect('cart')

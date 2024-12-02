@@ -60,3 +60,7 @@ class Contact(models.Model):
     email = models.EmailField(max_length=100)
     subject = models.CharField(max_length=100)
     message = models.CharField(max_length=500)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
