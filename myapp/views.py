@@ -209,7 +209,9 @@ def contact(request):
             message=message
         )
         messages.success(request, 'Data has been submitted')
-    return render(request, 'contact.html')
+
+    services = Service.objects.distinct('service_name')
+    return render(request, 'contact.html', {'services': services})
 
 def aboutus(request):
     services = Service.objects.distinct('service_name')

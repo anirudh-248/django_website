@@ -25,25 +25,30 @@
     
     <header id="header" class="header py-8 px-8 sticky top-0 z-10 backdrop-blur-md bg-transparent">
         <div class="container-fluid container-xl mx-auto flex items-center justify-between">
-           
+          
             <a href="/" class="logo flex items-center space-x-3">
                 <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="h-10">
                 <h1 class="sitename text-2xl font-bold text-gray-800">EazyWeddings</h1>
             </a>
-
-            <!-- Navigation Menu -->
+            
             <nav id="navmenu" class="navmenu">
                 <ul class="flex space-x-6 text-gray-800 font-medium">
-                 
+                   
+                   
+                    
                 </ul>
             </nav>
-
-           
+            
+            {% if user.is_authenticated %}
+            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="/logout">Logout</a>
+            {% else %}
+            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="/login">Login</a>
+            {% endif %}
         </div>
     </header>
 
-    <div class="flex justify-center items-center min-h-screen">
-        <div class="w-full max-w-3xl p-8 bg-white bg-opacity-80 backdrop-blur-lg rounded-xl shadow-lg">
+    <div class="flex justify-center items-center">
+        <div class="w-full max-w-3xl p-8 bg-white bg-opacity-80 backdrop-blur-lg rounded-xl shadow-lg mt-20">
             <div class="text-center mb-6">
                 <h1 class="text-4xl font-bold text-gray-800">Create Your Account</h1>
             </div>
@@ -118,8 +123,6 @@
                         <input type="text" name="service" id="service" placeholder="Enter your service"
                             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400">
                     </div>
-
-                   
                 </div>
 
                 <div class="mt-6">

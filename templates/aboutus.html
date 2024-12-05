@@ -22,7 +22,116 @@
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
   
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet"> 
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background-color: #fdf5f5;
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+        }
+        
+        .header {
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: background-color 0.3s;
+        }
+        
+        .header .logo img {
+            height: 50px;
+        }
+        
+        .header .sitename {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e60073;
+        }
+        
+        .header .navmenu ul li a {
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .header .navmenu ul li a:hover {
+            color: #e60073;
+        }
+         
+        .header .btn-getstarted {
+            background-color: #e60073;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .header .btn-getstarted:hover {
+            background-color: #cc005f;
+        }
+        
+        .about-title {
+            color: #e60073;
+            font-size: 36px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text {
+            width: 75%;
+            margin: 0 auto;
+            margin-bottom: 40px;
+            text-align: justify;
+            line-height: 1.7;
+            color: #4a4a4a;
+        }
+        
+        
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+            color: #666;
+        }
+        
+        .footer .footer-top .logo .sitename {
+            color: #e60073;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .footer p, .footer h4 {
+            color: #666;
+        }
+        
+        .footer .footer-links h4 {
+            font-weight: 600;
+            color: #4a4a4a;
+        }
+        
+        .footer .footer-links ul li a {
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .footer .footer-links ul li a:hover {
+            color: #e60073;
+        }
+        
+        .footer .social-links a {
+            color: #555;
+            transition: color 0.3s;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        
+        .footer .social-links a:hover {
+            color: #e60073;
+        }
+    </style>
 </head>
 <body>
     <header id="header" class="header d-flex align-items-center sticky-top">
@@ -78,7 +187,7 @@
                     <a href="/" class="logo d-flex align-items-center">
                         <span class="sitename">EazyWeddings</span>
                     </a>
-                    <p>Planning a wedding can be a whirlwind of excitement and stress...</p>
+                    <p>Planning a wedding can be a whirlwind of excitement and stress. At EazyWeddings, we're here to make the process seamless and enjoyable. Our platform connects you with a vast network of top-notch vendors, offering everything from stunning venues to exquisite catering.</p>
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
@@ -121,112 +230,3 @@
     </footer>
 </body>
 </html>
-<style>
-
-body {
-    background-color: #fdf5f5;
-    font-family: 'Poppins', sans-serif;
-    color: #4a4a4a;
-}
-
-
-.header {
-    background-color: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px 0;
-    transition: background-color 0.3s;
-}
-
-.header .logo img {
-    height: 50px;
-}
-
-.header .sitename {
-    font-size: 24px;
-    font-weight: 700;
-    color: #e60073;
-}
-
-.header .navmenu ul li a {
-    color: #555;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.header .navmenu ul li a:hover {
-    color: #e60073;
-}
- 
-.header .btn-getstarted {
-    background-color: #e60073;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-.header .btn-getstarted:hover {
-    background-color: #cc005f;
-}
-
-
-.about-title {
-    color: #e60073;
-    font-size: 36px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.about-text {
-    width: 75%;
-    margin: 0 auto;
-    margin-bottom: 40px;
-    text-align: justify;
-    line-height: 1.7;
-    color: #4a4a4a;
-}
-
-
-.footer {
-    background-color: #f8f9fa;
-    padding: 40px 0;
-    color: #666;
-}
-
-.footer .footer-top .logo .sitename {
-    color: #e60073;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.footer p, .footer h4 {
-    color: #666;
-}
-
-.footer .footer-links h4 {
-    font-weight: 600;
-    color: #4a4a4a;
-}
-
-.footer .footer-links ul li a {
-    color: #555;
-    transition: color 0.3s;
-}
-
-.footer .footer-links ul li a:hover {
-    color: #e60073;
-}
-
-.footer .social-links a {
-    color: #555;
-    transition: color 0.3s;
-    font-size: 18px;
-    margin-right: 15px;
-}
-
-.footer .social-links a:hover {
-    color: #e60073;
-}
-</style>

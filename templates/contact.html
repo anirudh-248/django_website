@@ -1,111 +1,280 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - EazyWeddings</title>
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
             background-color: #fdf5f5;
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+        }
+        
+        .header {
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: background-color 0.3s;
+        }
+        
+        .header .logo img {
+            height: 50px;
+        }
+        
+        .header .sitename {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e60073;
+        }
+        
+        .header .navmenu ul li a {
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .header .navmenu ul li a:hover {
+            color: #e60073;
+        }
+         
+        .header .btn-getstarted {
+            background-color: #e60073;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .header .btn-getstarted:hover {
+            background-color: #cc005f;
+        }
+        
+        .about-title {
+            color: #e60073;
+            font-size: 36px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text {
+            width: 75%;
+            margin: 0 auto;
+            margin-bottom: 40px;
+            text-align: justify;
+            line-height: 1.7;
+            color: #4a4a4a;
+        }
+        
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+            color: #666;
+        }
+        
+        .footer .footer-top .logo .sitename {
+            color: #e60073;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .footer p, .footer h4 {
+            color: #666;
+        }
+        
+        .footer .footer-links h4 {
+            font-weight: 600;
+            color: #4a4a4a;
+        }
+        
+        .footer .footer-links ul li a {
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .footer .footer-links ul li a:hover {
+            color: #e60073;
+        }
+        
+        .footer .social-links a {
+            color: #555;
+            transition: color 0.3s;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        
+        .footer .social-links a:hover {
+            color: #e60073;
         }
     </style>
 </head>
 <body>
-    <header id="header" class="header py-8 px-8 sticky top-0 z-10 backdrop-blur-md bg-transparent">
-        <div class="container-fluid container-xl mx-auto flex items-center justify-between">
-            <a href="/" class="logo flex items-center space-x-3">
-                <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="h-10">
-                <h1 class="sitename text-2xl font-bold text-gray-800">EazyWeddings</h1>
+
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="/" class="logo d-flex align-items-center me-auto">
+                <img src="{% static 'assets/img/logo.png' %}" alt="">
+                <h1 class="sitename">EazyWeddings</h1>
             </a>
-            <nav id="navmenu" class="navmenu"></nav>
+    
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="aboutus" class="active">About</a></li>
+                    {% if user.userprofile.user_type == 'customer' %}
+                        <li><a href="/customer">Services</a></li>
+                    {% elif user.userprofile.user_type == 'service-provider' %}
+                        <li><a href="/service-provider">Services</a></li>
+                    {% else %}
+                        <li><a href="/#services">Services</a></li>
+                    {% endif %}
+                    <li><a href="/#portfolio">Portfolio</a></li>
+                    <li><a href="/#team">Team</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            
             {% if user.is_authenticated %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="logout">Logout</a>
+                <a class="btn-getstarted" href="logout">Logout</a>
             {% else %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="register">Register</a>
+                <a class="btn-getstarted" href="login">Login</a>
             {% endif %}
         </div>
     </header>
 
-    <div class="container mx-auto px-4 py-8">
-   
-        
+    {% for msg in messages %}
+        <p style="text-align: center; color: green; margin-top: 30px;">{{ msg }}</p>
+    {% endfor %}
 
-      
+    <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-lg p-6">
             <h1 class="text-4xl font-extrabold text-gray-800 text-center">Share Your Feedback</h1>
             <p class="text-center text-gray-600 text-sm mt-2">
                 Your feedback helps us improve and provide better services.
             </p>
             <div class="mt-6">
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSeRbdP4EyFSdaP3n70y7iAFyAaVn4ZB_00cFbX68DUOC4nzbw/viewform?embedded=true" 
-                    width="100%" 
-                    height="600" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0" 
-                    class="rounded-lg border border-gray-300 shadow-lg">
-                    Loading…
-                </iframe>
+                <form action="contact" method="POST" class="space-y-4">
+                    {% csrf_token %}
+    
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your name"
+                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400">
+                    </div>
+    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+                        <input type="email" name="email" id="email" placeholder="Enter your email"
+                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400">
+                    </div>
+    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700">Subject:</label>
+                        <input type="text" name="subject" id="subject" placeholder="Enter the subject"
+                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400">
+                    </div>
+    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message:</label>
+                        <textarea name="message" id="message" rows="5" placeholder="Write your message here"
+                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"></textarea>
+                    </div>
+    
+                    <div>
+                        <input type="submit" value="Submit Feedback"
+                            class="w-full bg-gray-700 hover:bg-gray-800 text-white py-3 rounded-lg font-semibold text-sm cursor-pointer">
+                    </div>
+                </form>
             </div>
             <p class="text-center text-gray-600 text-sm mt-4">
                 Thank you for your valuable time and feedback!
             </p>
         </div>
-    </div>
+    </div>    
+    
+    <footer id="footer" class="footer light-background">
 
- 
-        <p>To go back to the main page, <a href="/" class="text-pink-600 underline">click here</a>.</p>
-        <footer id="footer" class="footer">
-            <div class="container footer-top">
-                <div class="row gy-4">
-                    <div class="col-lg-5 col-md-12 footer-about">
-                        <a href="/" class="logo d-flex align-items-center">
-                            <span class="sitename">EazyWeddings</span>
-                        </a>
-                        <p>Planning a wedding can be a whirlwind of excitement and stress...</p>
-                        <div class="social-links d-flex mt-4">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/aboutus">About us</a></li>
-                            {% if user.userprofile.user_type == 'customer' %}
-                                <li><a href="/customer">Services</a></li>
-                            {% elif user.userprofile.user_type == 'service-provider' %}
-                                <li><a href="/service-provider">Services</a></li>
-                            {% else %}
-                                <li><a href="/#services">Services</a></li>
-                            {% endif %}
-                            <li><a href="#">Terms of service</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            {% for service in services %}
-                                <li><a href="/#services">{{service.service_name}}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-12 footer-contact">
-                        <h4>Contact Us</h4>
-                        <p>Dr. Vishnuvardhana Road, RNS Farms Rd,<br> Bengaluru, Karnataka - 560098</p>
-                        <p><strong>Phone:</strong> +91 10101 01010</p>
-                        <p><strong>Email:</strong> EazyWeddings@gmail.com</p>
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-about">
+                    <a href="/" class="logo d-flex align-items-center">
+                        <span class="sitename">EazyWeddings</span>
+                    </a>
+                    <p>Planning a wedding can be a whirlwind of excitement and stress. At EazyWeddings, we're here to make the process seamless and enjoyable. Our platform connects you with a vast network of top-notch vendors, offering everything from stunning venues to exquisite catering.</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href=""><i class="bi bi-twitter"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
+        
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/aboutus">About us</a></li>
+                        {% if user.userprofile.user_type == 'customer' %}
+                        <li><a href="/customer">Services</a></li>
+                        {% elif user.userprofile.user_type == 'service-provider' %}
+                        <li><a href="/service-provider">Services</a></li>
+                        {% else %}
+                        <li><a href="#services">Services</a></li>
+                        {% endif %}
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+        
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        {% for service in services %}
+                        {% if user.userprofile.user_type == 'customer' %}
+                        <li><a href="/customer/{{service.service_name}}">{{service.service_name}}</a></li>
+                        {% elif user.userprofile.user_type == 'service-provider' %}
+                        <li><a href="/service-provider/{{service.service_name}}">{{service.service_name}}</a></li>
+                        {% else %}
+                        <li><a href="#services">{{service.service_name}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+        
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>Dr. Vishnuvardhana Road Post, RNS Farms Rd,</p>
+                    <p>Channasandra, Rajarajeshwari Nagar,</p>
+                    <p>Bengaluru, Karnataka - 560098</p>
+                    <p class="mt-4"><strong>Phone:</strong> <span>+91 10101 01010</span></p>
+                    <p><strong>Email:</strong> <span>EazyWeddings@gmail.com</span></p>
+                </div>
+                
             </div>
-       
+        </div>
     </footer>
+    
 </body>
 </html>
