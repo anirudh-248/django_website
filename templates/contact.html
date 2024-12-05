@@ -3,27 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact us</title>
+    <title>Contact Us - EazyWeddings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf5f5;
+        }
+    </style>
 </head>
 <body>
-    <h1>Contact Us</h1>
-    {% for msg in messages %}
-    <p style="color: red;">{{msg}}</p>
-    {% endfor %}
-    <form action="contact" method="POST">
-        {% csrf_token %}
-        <p>Name:</p>
-        <input type="text" name="name" id="name">
-        <p>Email:</p>
-        <input type="text" name="email" id="email">
-        <p>Subject:</p>
-        <input type="text" name="subject" id="subject">
-        <p>Message:</p>
-        <textarea name="message" id="message"></textarea>
-        <br><br>
-        <input type="submit" name="Submit" id="submit">
-    </form>
-    <br>
-    <p>To go back to main page, <a href="/">click here</a></p>
+    <header id="header" class="header py-8 px-8 sticky top-0 z-10 backdrop-blur-md bg-transparent">
+        <div class="container-fluid container-xl mx-auto flex items-center justify-between">
+            <a href="/" class="logo flex items-center space-x-3">
+                <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="h-10">
+                <h1 class="sitename text-2xl font-bold text-gray-800">EazyWeddings</h1>
+            </a>
+            <nav id="navmenu" class="navmenu"></nav>
+            {% if user.is_authenticated %}
+            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="logout">Logout</a>
+            {% else %}
+            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="register">Register</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+   
+        
+
+      
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-4xl font-extrabold text-gray-800 text-center">Share Your Feedback</h1>
+            <p class="text-center text-gray-600 text-sm mt-2">
+                Your feedback helps us improve and provide better services.
+            </p>
+            <div class="mt-6">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSeRbdP4EyFSdaP3n70y7iAFyAaVn4ZB_00cFbX68DUOC4nzbw/viewform?embedded=true" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    class="rounded-lg border border-gray-300 shadow-lg">
+                    Loading…
+                </iframe>
+            </div>
+            <p class="text-center text-gray-600 text-sm mt-4">
+                Thank you for your valuable time and feedback!
+            </p>
+        </div>
+    </div>
+
+ 
+        <p>To go back to the main page, <a href="/" class="text-pink-600 underline">click here</a>.</p>
+        <footer id="footer" class="footer">
+            <div class="container footer-top">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-about">
+                        <a href="/" class="logo d-flex align-items-center">
+                            <span class="sitename">EazyWeddings</span>
+                        </a>
+                        <p>Planning a wedding can be a whirlwind of excitement and stress...</p>
+                        <div class="social-links d-flex mt-4">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/aboutus">About us</a></li>
+                            {% if user.userprofile.user_type == 'customer' %}
+                                <li><a href="/customer">Services</a></li>
+                            {% elif user.userprofile.user_type == 'service-provider' %}
+                                <li><a href="/service-provider">Services</a></li>
+                            {% else %}
+                                <li><a href="/#services">Services</a></li>
+                            {% endif %}
+                            <li><a href="#">Terms of service</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            {% for service in services %}
+                                <li><a href="/#services">{{service.service_name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-12 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>Dr. Vishnuvardhana Road, RNS Farms Rd,<br> Bengaluru, Karnataka - 560098</p>
+                        <p><strong>Phone:</strong> +91 10101 01010</p>
+                        <p><strong>Email:</strong> EazyWeddings@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+       
+    </footer>
 </body>
 </html>
