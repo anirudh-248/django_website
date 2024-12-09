@@ -11,10 +11,6 @@ services:
       - db
     env_file:
       - .env
-    environment:
-      - DEBUG=True
-      - DJANGO_ALLOWED_HOSTS=.onrender.com,127.0.0.1,13.55.221.108,localhost
-      - DATABASE_URL=postgres://local_user:local_password@db:5432/myproject
 
   db:
     image: postgres:14
