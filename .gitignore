@@ -4,3 +4,4 @@ node_modules
 media/
 uploads/
 db.sqlite3
+env
