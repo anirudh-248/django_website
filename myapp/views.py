@@ -232,7 +232,7 @@ def cart(request):
             user=request.user,
             service=service,
         )
-        return redirect('cart')
+        return redirect('customer')
     
     cart_items = Cart.objects.filter(user=request.user)
     cart_total = sum([item.service.service_cost for item in cart_items])
