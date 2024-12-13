@@ -76,7 +76,8 @@ def login(request):
         return render(request, 'login.html')
     
 def forgot_password(request):
-    return render(request, 'forgotpassword.html')
+    services = Service.objects.distinct('service_name')
+    return render(request, 'forgotpassword.html', {'services': services})
     
 def logout(request):
     auth.logout(request)
