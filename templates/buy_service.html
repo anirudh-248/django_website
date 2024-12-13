@@ -4,12 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy - EazyWeddings</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffeef3, #fff5f8, #fef6fb);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d94c77;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .card-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff4f8;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d77a96;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            flex: 2;
+        }
+
+        .card-content p {
+            font-size: 1em;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .card-content p strong {
+            color: #d94c77;
+        }
+
+        .card-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .card-image img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #f3f3f3;
+            border: 1px solid #ddd;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            background-color: #d06b8c;
+            font-weight: bold;
+            text-align: center;
+            transition: background 0.3s, transform 0.3s ease;
+            box-shadow: 0 3px 8px rgba(208, 107, 140, 0.3);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #c55776;
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
     <h1>Buy Service</h1>
-    <p>Service name: {{ service.service_name }}</p>
-    <p>Provider name: {{ service.provider_name }}</p>
-    <p>Details: {{ service.details }}</p>
-    <p>Cost: ₹{{ service.service_cost }}</p>
+    <div class="card-container">
+        <div class="card-content">
+            <p><strong>Service Name:</strong> {{ service.service_name }}</p>
+            <p><strong>Provider Name:</strong> {{ service.provider_name }}</p>
+            <p><strong>Details:</strong> {{ service.details }}</p>
+            <p><strong>Cost:</strong> ₹{{ service.service_cost }}</p>
+        </div>
+        <div class="card-image">
+            <img src="{{ service.banner.url }}" alt="Service Image">
+        </div>
+    </div>
+    <div class="btn-container">
+        <a href="/cart" class="btn">Back to Cart</a>
+        <a href="/buy_service_confirm/{{ service.id }}" class="btn">Confirm Purchase</a>
+    </div>
 </body>
 </html>
