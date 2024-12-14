@@ -34,10 +34,8 @@
             color: #d94c77;
             margin: 20px 0;
             font-weight: bold;
-            
         }
 
-        
         .cart-container {
             max-width: 800px;
             margin: 20px auto;
@@ -168,8 +166,8 @@
         </div>
     </header>
     
+    <h1 class="text-center text-pink-700 my-7 font-bold text-3xl">Your Cart</h1>
 
-    <h1>Your Cart</h1>
     <div class="cart-container">
         {% if cart_items %}
             {% for item in cart_items %}
@@ -191,11 +189,12 @@
             </div>
             <div class="btn-container">
                 <a href="/customer" class="btn">Return to Services</a>
-                <a href="/buy_service" class="btn">Buy Now</a>
+                <a href="/buy_service" class="btn">Proceed to Buy</a>
             </div>
         {% else %}
             <p class="empty-cart">Your cart is empty.</p>
         {% endif %}
     </div>
+    
 </body>
 </html>
