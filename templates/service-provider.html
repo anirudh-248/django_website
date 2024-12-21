@@ -82,8 +82,21 @@
     <h2>Your Services</h2>
     
     <!-- Button to toggle the form -->
-    <button type="button" class="btn btn-primary float-right" data-toggle="collapse" data-target="#addServiceForm" style="font-size: 30px; padding-left: 20px; padding-right: 20px;">
-        +
+    <!-- Button to toggle the form -->
+    <button type="button" 
+            class="btn btn-primary float-right rounded-circle shadow-lg" 
+            data-toggle="collapse" 
+            data-target="#addServiceForm" 
+            style="
+                font-size: 1.5rem; 
+                width: 60px; 
+                height: 60px; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 0; 
+                position: relative;">
+      +
     </button>
     
     <!-- Collapsible form for adding a new service -->
@@ -122,26 +135,30 @@
               <label for="banner">Upload Banner:</label>
               <input type="file" name="banner" class="form-control">
           </div>
-          <button type="submit" class="btn btn-success">Add Service</button>
+          <button type="submit" class="btn btn-success" style="margin-top: 10px;">Add Service</button>
       </form>
   </div>
-  {% for service in services_f %}
-  <div class="col-lg-4 col-md-6 mb-4" style="margin-top: 20px;">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{service.banner.url}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{service.service_name}}</h5>
-        <p class="card-text">{{service.details}}</p>
-        <h3>₹{{service.service_cost}}</h3>
-        <br>
-        <form action="{% url 'delete' service.id %}" method="POST">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-primary" style="border: none;">Delete</button>
-        </form>
-      </div>
+  <div class="container">
+    <div class="row">
+      {% for service in services_f %}
+        <div class="col-lg-4 col-md-6 mb-4" style="margin-top: 40px;">
+          <div class="card" style="width: 100%;">
+            <img class="card-img-top" src="{{service.banner.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{service.service_name}}</h5>
+              <p class="card-text">{{service.details}}</p>
+              <h3>₹{{service.service_cost}}</h3>
+              <br>
+              <form action="{% url 'delete' service.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary" style="border: none;">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>
-  {% endfor %}
+  </div>  
          
   </main>
 
