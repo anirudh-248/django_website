@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +11,6 @@
       function toggleServiceProviderFields() {
         var userType = document.getElementById("utype").value;
         var serviceFields = document.getElementById("service-provider-fields");
-
         if (userType === "service-provider") {
           serviceFields.classList.remove("hidden");
         } else {
@@ -19,212 +19,85 @@
       }
     </script>
   </head>
-
-  <body
-    class="bg-[#fdf5f5] font-['Poppins',sans-serif] bg-[url]"
-    style="background-image: url('')"
-  >
-    <header
-      id="header"
-      class="header py-8 px-8 sticky top-0 z-10 backdrop-blur-md bg-transparent"
-    >
-      <div class="container-fluid container-xl mx-auto flex items-center justify-between">
-        <a href="/" class="logo flex items-center space-x-3">
-          <img
-            src="{% static 'assets/img/logo.png' %}"
-            alt="Logo"
-            class="h-10"
-          />
-          <h1 class="sitename text-2xl font-bold text-gray-800">
-            EazyWeddings
-          </h1>
+  <body class="bg-[#fdf5f5] font-poppins bg-cover" style="background-image: url('')">
+    <!-- Header -->
+    <header class="py-6 px-8 sm:px-8 sticky top-0 z-10 backdrop-blur-md bg-transparent">
+      <div class="container mx-auto flex items-center justify-between">
+        <a href="/" class="flex items-center space-x-3">
+          <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="h-10" />
+          <h1 class="text-xl sm:text-2xl font-bold text-gray-800">EazyWeddings</h1>
         </a>
-
-        <nav id="navmenu" class="navmenu">
+        <nav class="hidden sm:block">
           <ul class="flex space-x-6 text-gray-800 font-medium"></ul>
         </nav>
-
         {% if user.is_authenticated %}
-        <a
-          class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center"
-          href="/logout"
-          >Logout</a
-        >
+        <a class="bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="/logout">Logout</a>
         {% else %}
-        <a
-          class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center"
-          href="/login"
-          >Login</a
-        >
+        <a class="bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="/login">Login</a>
         {% endif %}
       </div>
     </header>
-
-    <div class="flex justify-center items-center">
-      <div class="w-full max-w-3xl p-8 bg-white bg-opacity-80 backdrop-blur-lg rounded-xl shadow-lg mb-4">
+    
+    <!-- Main Content -->
+    <div class="flex justify-center items-center p-4">
+      <div class="w-full max-w-3xl p-6 sm:p-8 bg-white bg-opacity-80 backdrop-blur-lg rounded-xl shadow-lg mb-4">
         <div class="text-center mb-4">
-          <h1 class="text-3xl font-bold text-gray-800">Create Your Account</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Create Your Account</h1>
         </div>
-
-        <p class="text-center text-gray-600 text-sm mb-4">
-          Sign up to start planning effortlessly!
-        </p>
-
+        <p class="text-center text-gray-600 text-sm sm:text-base mb-4">Sign up to start planning effortlessly!</p>
         {% for msg in messages %}
         <h5 class="text-red-500 text-sm text-center mb-4">{{ msg }}</h5>
         {% endfor %}
-
         <form action="register" method="POST" class="space-y-6">
           {% csrf_token %}
-
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="fname" class="block text-sm font-medium text-gray-700"
-                >First name:</label
-              >
-              <input
-                type="text"
-                name="fname"
-                id="fname"
-                placeholder="Enter first name"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="fname" class="block text-sm font-medium text-gray-700">First name:</label>
+              <input type="text" name="fname" id="fname" placeholder="Enter first name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
-
             <div>
-              <label for="lname" class="block text-sm font-medium text-gray-700"
-                >Last name:</label
-              >
-              <input
-                type="text"
-                name="lname"
-                id="lname"
-                placeholder="Enter last name"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="lname" class="block text-sm font-medium text-gray-700">Last name:</label>
+              <input type="text" name="lname" id="lname" placeholder="Enter last name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
-
             <div>
-              <label
-                for="username"
-                class="block text-sm font-medium text-gray-700"
-                >Username:</label
-              >
-              <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Choose a username"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
+              <input type="text" name="username" id="username" placeholder="Choose a username" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
-
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700"
-                >Email:</label
-              >
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter your email"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+              <input type="email" name="email" id="email" placeholder="Enter your email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
-
             <div>
-              <label for="phno" class="block text-sm font-medium text-gray-700"
-                >Phone Number:</label
-              >
-              <input
-                type="text"
-                name="phno"
-                id="phno"
-                placeholder="Enter phone number"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="phno" class="block text-sm font-medium text-gray-700">Phone Number:</label>
+              <input type="text" name="phno" id="phno" placeholder="Enter phone number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
-
             <div>
-              <label for="utype" class="block text-sm font-medium text-gray-700"
-                >Type of User:</label
-              >
-              <select
-                name="utype"
-                id="utype"
-                onchange="toggleServiceProviderFields()"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm"
-              >
+              <label for="utype" class="block text-sm font-medium text-gray-700">Type of User:</label>
+              <select name="utype" id="utype" onchange="toggleServiceProviderFields()" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm">
                 <option value="customer">Customer</option>
                 <option value="service-provider">Service Provider</option>
               </select>
             </div>
-
             <div>
-              <label
-                for="password"
-                class="block text-sm font-medium text-gray-700"
-                >Enter Password:</label
-              >
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Choose a password"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="password" class="block text-sm font-medium text-gray-700">Enter Password:</label>
+              <input type="password" name="password" id="password" placeholder="Choose a password" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
-
             <div>
-              <label
-                for="password_r"
-                class="block text-sm font-medium text-gray-700"
-                >Repeat Password:</label
-              >
-              <input
-                type="password"
-                name="password_r"
-                id="password_r"
-                placeholder="Repeat password"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="password_r" class="block text-sm font-medium text-gray-700">Repeat Password:</label>
+              <input type="password" name="password_r" id="password_r" placeholder="Repeat password" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
           </div>
-
           <div id="service-provider-fields" class="hidden space-y-6 mt-6">
             <div>
-              <label
-                for="service"
-                class="block text-sm font-medium text-gray-700"
-                >Enter GSTIN:</label
-              >
-              <input
-                type="text"
-                name="service"
-                id="service"
-                placeholder="Enter your service"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400"
-              />
+              <label for="service" class="block text-sm font-medium text-gray-700">Enter GSTIN:</label>
+              <input type="text" name="service" id="service" placeholder="Enter your service" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 text-sm placeholder-gray-400" />
             </div>
           </div>
-
           <div class="mt-6">
-            <input
-              type="submit"
-              name="submit"
-              id="submit"
-              value="Sign Up"
-              class="w-full bg-gray-700 hover:bg-gray-800 text-white py-3 rounded-lg font-semibold text-sm"
-            />
+            <input type="submit" name="submit" id="submit" value="Sign Up" class="w-full bg-gray-700 hover:bg-gray-800 text-white py-3 rounded-lg font-semibold text-sm" />
           </div>
         </form>
-
-        <p class="text-center text-sm text-gray-600 mt-6">
-          Already have an account?
-          <a href="login" class="text-pink-400 hover:underline"
-            >Click here to log in</a
-          >
-        </p>
+        <p class="text-center text-sm text-gray-600 mt-6">Already have an account? <a href="login" class="text-pink-400 hover:underline">Click here to log in</a></p>
       </div>
     </div>
   </body>

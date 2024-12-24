@@ -8,58 +8,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - EazyWeddings</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            overflow: hidden; 
-            height: 100vh; 
-        }
-    </style>
 </head>
 
-<body class="bg-[#fdf5f5] font-['Poppins',sans-serif] bg-[url]">    
- 
-    <header id="header" class="header py-8 px-8 sticky top-0 z-10 bg-transparent">
-        <div class="container-fluid container-xl mx-auto flex items-center justify-between">
-          
-            <a href="/" class="logo flex items-center space-x-3">
+<body class="bg-[#fdf5f5] font-poppins overflow-hidden h-screen bg-[url]">    
+
+    <!-- Header -->
+    <header class="py-6 px-8 sticky top-0 z-10 bg-transparent">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3">
                 <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="h-10">
-                <h1 class="sitename text-2xl font-bold text-gray-800">EazyWeddings</h1>
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-800">EazyWeddings</h1>
             </a>
             
-            <nav id="navmenu" class="navmenu">
-                <ul class="flex space-x-6 text-gray-800 font-medium">
-                   
-                   
-                    
+            <nav>
+                <ul class="flex space-x-4 sm:space-x-6 text-gray-800 font-medium">
+                    <!-- Add navigation items here -->
                 </ul>
             </nav>
             
             {% if user.is_authenticated %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="logout">Logout</a>
+            <a class="bg-pink-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg font-semibold hover:bg-pink-700 w-20 sm:w-24 text-center" href="logout">Logout</a>
             {% else %}
-            <a class="btn-getstarted bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 w-24 text-center" href="register">Register</a>
+            <a class="bg-pink-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg font-semibold hover:bg-pink-700 w-20 sm:w-24 text-center" href="register">Register</a>
             {% endif %}
         </div>
-    </header>
-    
+    </header>    
+
     <div class="flex">
         <!-- Left Image Section -->
-        <div class="w-full lg:w-1/2 h-full bg-[url('{% static 'assets/img/login.png' %}')] bg-cover hidden lg:block fixed top-0 left-0">
-        </div>
-    
+        <div class="hidden lg:block lg:w-1/2 h-full bg-cover bg-[url('{% static 'assets/img/login.png' %}')] fixed top-0 left-0"></div>
+
         <!-- Right Form Section -->
         <div class="w-full lg:w-1/2 ml-auto flex items-center justify-center p-12">
-            <!-- Login Form Content -->
-            <div class="max-w-lg w-full backdrop-blur-sm bg-white/40 rounded-2xl shadow-lg p-8">
+            <div class="max-w-lg w-full bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg p-8">
                 <h1 class="text-4xl font-extrabold text-gray-800 text-center">Welcome Back!</h1>
                 <p class="text-center text-gray-600 text-sm mt-2">
                     We can assign tasks, set deadlines, and track progress effortlessly.
                 </p>
-    
+
                 {% for msg in messages %}
                 <h5 class="text-red-500 text-sm text-center">{{ msg }}</h5>
                 {% endfor %}
-    
+
                 <form action="login" method="POST" class="space-y-4 mt-6">
                     {% csrf_token %}
                     <div>
@@ -67,34 +57,34 @@
                         <input type="text" name="username" id="username" placeholder="Input your username here"
                             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400">
                     </div>
-    
+
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
                         <input type="password" name="password" id="password" placeholder="Input password here"
                             class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400">
                     </div>
-    
-                  
+
                     <div>
                         <input type="submit" name="submit" id="submit" value="Sign in"
                             class="w-full bg-gray-700 hover:bg-gray-800 text-white py-2 rounded-lg font-semibold text-sm">
                     </div>
                 </form>
-    
+
                 <div class="flex items-center justify-center space-x-2 border border-gray-300 rounded-lg py-2 cursor-pointer mt-4">
                     <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Logo" class="w-5 h-5">
                     <p class="text-sm text-gray-600">Sign in with Google</p>
                 </div>
+
                 <p class="text-center text-gray-600 text-sm mt-4">
-                <a href="/login/forgotpassword" class="text-pink-600 hover:underline">Forgot Password</a>
-            </p>
-    
+                    <a href="/login/forgotpassword" class="text-pink-600 hover:underline">Forgot Password</a>
+                </p>
+
                 <p class="text-center text-gray-600 text-sm mt-4">
                     Don't have an account? <a href="register" class="text-pink-600 hover:underline">Create account</a>
                 </p>
             </div>
         </div>
-    </div>    
+    </div>
 
 </body>
 </html>
