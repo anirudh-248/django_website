@@ -119,15 +119,20 @@ def service_provider(request):
         service_name = request.POST.get('service_name')
         provider_name = request.user.username
         details = request.POST.get('details')
-        service_cost = request.POST.get('service_cost')
+        advance_cost = request.POST.get('advance_cost')
+        est_final_cost = request.POST.get('est_final_cost')
         banner = request.FILES.get('banner')
+
+        if not banner:
+            banner = 'fallback.png'
 
         # Create a new service instance
         new_service = Service(
             service_name=service_name,
             provider_name=provider_name,
             details=details,
-            service_cost=service_cost,
+            advance_cost=advance_cost,
+            est_final_cost=est_final_cost,
             banner=banner,
         )
 
@@ -236,7 +241,7 @@ def cart(request):
         return redirect('customer')
     
     cart_items = Cart.objects.filter(user=request.user)
-    cart_total = sum([item.service.service_cost for item in cart_items])
+    cart_total = sum([item.service.advance_cost for item in cart_items])
     return render(request, 'cart.html', {'cart_items': cart_items, 'cart_total': cart_total})
 
 def remove_from_cart(request, item_id):

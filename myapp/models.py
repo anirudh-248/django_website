@@ -18,7 +18,8 @@ class Service(models.Model):
     service_name = models.CharField(max_length=100, null=True)
     provider_name = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
-    service_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    advance_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    est_final_cost = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return f"{self.service_name} - {self.provider_name}"
